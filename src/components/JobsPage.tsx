@@ -7,17 +7,18 @@ interface FilterButtonProps {
   options?: string[];
   onClick?: () => void;
   isOpen?: boolean;
-  onSelect?: (option: string) => void;
+  onSelect?: (filterType: string, option: string) => void;
+  selectedText?: string;
 }
 
-function FilterButton({ label, options = [], onClick, isOpen = false, onSelect }: FilterButtonProps) {
+function FilterButton({ label, options = [], onClick, isOpen = false, onSelect, selectedText }: FilterButtonProps) {
   return (
     <div className="relative">
       <button 
         onClick={onClick}
         className="bg-gray-200 rounded-md px-5 py-2.5 flex items-center gap-2 min-w-[130px] h-[38px] hover:bg-gray-300 transition-colors"
       >
-        <span className="font-semibold text-base text-center text-black flex-1">{label}</span>
+        <span className="font-semibold text-base text-center text-black flex-1">{selectedText || label}</span>
         <svg 
           width="18" 
           height="18" 
@@ -34,7 +35,7 @@ function FilterButton({ label, options = [], onClick, isOpen = false, onSelect }
           {options.map((option, index) => (
             <button
               key={index}
-              onClick={() => onSelect?.(option)}
+              onClick={() => onSelect?.(label, option)}
               className="w-full text-left px-4 py-2.5 text-sm hover:bg-gray-100 first:rounded-t-md last:rounded-b-md"
             >
               {option}
@@ -104,26 +105,102 @@ const sampleJobs = [
 ];
 
 const filterOptions = {
-  직무: ['마케팅', '영업', '기획', '인사', '재무'],
-  '커리어 여정': ['신입', '경력', '인턴'],
-  카테고리: ['IT', '금융', '제조', '서비스'],
-  '투자 시리즈': ['시드', 'A라운드', 'B라운드', 'C라운드'],
-  매출: ['1억 미만', '1-10억', '10-100억', '100억 이상'],
-  '임직원 수': ['10명 미만', '10-50명', '50-100명', '100명 이상'],
-  산업: ['IT', '금융', '제조', '서비스', '유통'],
-  지역: ['서울', '경기', '부산', '대구', '광주']
+  직무: ['전체보기', '마케팅', '세일즈', '기획/운영', '인사/HR/경영관리'],
+  '커리어 여정': ['전체보기', '첫 커리어', '인턴 1회', '인턴 2회 이상', '신입'],
+  카테고리: ['전체보기', '혁신의숲 어워즈'],
+  '투자 시리즈': ['전체보기', 'seed', 'pre-A', 'seriesA', 'seriesB', 'seriesC', 'seriesD', 'IPO', 'M&A'],
+  매출: ['전체보기', '0~1억', '1~10억', '10~50억', '50억~100억', '100억 이상', '500억 이상'],
+  '임직원 수': ['전체보기', '0~10명', '11~50명', '51~100명', '100명 이상'],
+  산업: ['전체보기', 'IT', '금융', '제조', '서비스', '유통'],
+  지역: ['전체보기', '서울', '경기', '부산', '대구', '광주']
+};
+
+// 커리어 여정별 자동 필터 설정
+const careerJourneyFilters: {[key: string]: {[key: string]: string[]}} = {
+  '첫 커리어': {
+    '투자 시리즈': ['seed', 'pre-A'],
+    매출: ['0~1억'],
+    '임직원 수': ['0~10명']
+  },
+  '인턴 1회': {
+    '투자 시리즈': ['seed', 'seriesA'],
+    매출: ['1~10억'],
+    '임직원 수': ['11~50명']
+  },
+  '인턴 2회 이상': {
+    '투자 시리즈': ['seriesA', 'seriesB'],
+    매출: ['10~50억'],
+    '임직원 수': ['51~100명']
+  },
+  '신입': {
+    '투자 시리즈': ['seriesB', 'seriesC'],
+    매출: ['50억~100억'],
+    '임직원 수': ['100명 이상']
+  }
 };
 
 export default function JobsPage() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [selectedFilters, setSelectedFilters] = useState<{[key: string]: string[]}>({});
 
   const handleDropdownToggle = (label: string) => {
     setOpenDropdown(openDropdown === label ? null : label);
   };
 
-  const handleOptionSelect = (option: string) => {
-    console.log('Selected:', option);
+  const handleOptionSelect = (filterType: string, option: string) => {
+    console.log('Selected:', filterType, option);
+    
+    // 전체보기 선택 시 필터 초기화
+    if (option === '전체보기') {
+      if (filterType === '커리어 여정') {
+        // 커리어 여정 전체보기 시 자동 필터도 함께 초기화
+        setSelectedFilters(prev => {
+          const newFilters = { ...prev };
+          delete newFilters[filterType];
+          delete newFilters['투자 시리즈'];
+          delete newFilters['매출'];
+          delete newFilters['임직원 수'];
+          return newFilters;
+        });
+      } else {
+        // 다른 필터의 전체보기 시 해당 필터만 초기화
+        setSelectedFilters(prev => {
+          const newFilters = { ...prev };
+          delete newFilters[filterType];
+          return newFilters;
+        });
+      }
+    } else {
+      // 커리어 여정 선택 시 자동 필터링
+      if (filterType === '커리어 여정' && careerJourneyFilters[option]) {
+        const autoFilters = careerJourneyFilters[option];
+        setSelectedFilters(prev => ({
+          ...prev,
+          [filterType]: [option],
+          ...autoFilters
+        }));
+      } else {
+        // 일반 필터 선택
+        setSelectedFilters(prev => ({
+          ...prev,
+          [filterType]: [option]
+        }));
+      }
+    }
+    
     setOpenDropdown(null);
+  };
+
+  const getSelectedFilterText = (filterType: string) => {
+    const selected = selectedFilters[filterType];
+    if (selected && selected.length > 0) {
+      // 전체보기가 선택된 경우에는 원래 라벨 표시
+      if (selected[0] === '전체보기') {
+        return filterType;
+      }
+      return selected.length === 1 ? selected[0] : `${selected[0]} 외 ${selected.length - 1}개`;
+    }
+    return filterType;
   };
 
   return (
@@ -150,6 +227,7 @@ export default function JobsPage() {
             isOpen={openDropdown === '직무'}
             onClick={() => handleDropdownToggle('직무')}
             onSelect={handleOptionSelect}
+            selectedText={getSelectedFilterText('직무')}
           />
           <FilterButton 
             label="커리어 여정" 
@@ -157,6 +235,7 @@ export default function JobsPage() {
             isOpen={openDropdown === '커리어 여정'}
             onClick={() => handleDropdownToggle('커리어 여정')}
             onSelect={handleOptionSelect}
+            selectedText={getSelectedFilterText('커리어 여정')}
           />
         </div>
 
@@ -168,6 +247,7 @@ export default function JobsPage() {
             isOpen={openDropdown === '카테고리'}
             onClick={() => handleDropdownToggle('카테고리')}
             onSelect={handleOptionSelect}
+            selectedText={getSelectedFilterText('카테고리')}
           />
           <FilterButton 
             label="투자 시리즈" 
@@ -175,6 +255,7 @@ export default function JobsPage() {
             isOpen={openDropdown === '투자 시리즈'}
             onClick={() => handleDropdownToggle('투자 시리즈')}
             onSelect={handleOptionSelect}
+            selectedText={getSelectedFilterText('투자 시리즈')}
           />
           <FilterButton 
             label="매출" 
@@ -182,6 +263,7 @@ export default function JobsPage() {
             isOpen={openDropdown === '매출'}
             onClick={() => handleDropdownToggle('매출')}
             onSelect={handleOptionSelect}
+            selectedText={getSelectedFilterText('매출')}
           />
           <FilterButton 
             label="임직원 수" 
@@ -189,6 +271,7 @@ export default function JobsPage() {
             isOpen={openDropdown === '임직원 수'}
             onClick={() => handleDropdownToggle('임직원 수')}
             onSelect={handleOptionSelect}
+            selectedText={getSelectedFilterText('임직원 수')}
           />
           <FilterButton 
             label="산업" 
@@ -196,6 +279,7 @@ export default function JobsPage() {
             isOpen={openDropdown === '산업'}
             onClick={() => handleDropdownToggle('산업')}
             onSelect={handleOptionSelect}
+            selectedText={getSelectedFilterText('산업')}
           />
           <FilterButton 
             label="지역" 
@@ -203,6 +287,7 @@ export default function JobsPage() {
             isOpen={openDropdown === '지역'}
             onClick={() => handleDropdownToggle('지역')}
             onSelect={handleOptionSelect}
+            selectedText={getSelectedFilterText('지역')}
           />
         </div>
       </div>
