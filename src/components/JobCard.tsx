@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 
 interface JobCardProps {
   category: string;
@@ -28,9 +29,11 @@ export default function JobCard({
       <div className="flex items-center">
         <div className={`rounded flex-shrink-0 w-[80px] h-[80px] flex items-center justify-center ${logoUrl ? 'bg-white border border-gray-300' : 'bg-blue-500'}`}>
           {logoUrl ? (
-            <img 
+            <Image 
               src={logoUrl} 
               alt={`${company} 로고`} 
+              width={80}
+              height={80}
               className="w-full h-full object-contain rounded"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;

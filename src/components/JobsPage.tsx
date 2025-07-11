@@ -15,12 +15,14 @@ interface JobData {
 }
 
 interface JobsPageProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initialJobs: any[];
   currentFilters: { [key: string]: string | string[] | undefined };
 }
 
 export default function JobsPage({ initialJobs, currentFilters }: JobsPageProps) {
   // 서버에서 이미 필터링된 데이터를 JobData 형식으로 변환
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const jobs: JobData[] = initialJobs.map((item: any) => ({
     id: item.id,
     category: item.companies?.categories?.length > 0 
@@ -43,7 +45,7 @@ export default function JobsPage({ initialJobs, currentFilters }: JobsPageProps)
           문과 취업준비생에게 딱 맞는 채용공고만 보여드립니다
         </h1>
         <p className="font-normal text-xl text-black leading-7 text-center max-w-[872px] mx-auto">
-          '내가 잘할 수 있을까?', '지원해도 괜찮을까?' <br />
+          &apos;내가 잘할 수 있을까?&apos;, &apos;지원해도 괜찮을까?&apos; <br />
           처음이라 더 조심스러운 그 마음, 잘 알고 있습니다. <br />
           그래서 여러분이 지원해볼만한 공고만 엄선했습니다.
         </p>
