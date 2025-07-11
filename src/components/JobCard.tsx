@@ -5,6 +5,7 @@ interface JobCardProps {
   title: string;
   company: string;
   jobType: string;
+  jobTypeSub: string;
   employmentType: string;
   curation: string;
   logoUrl?: string;
@@ -15,6 +16,7 @@ export default function JobCard({
   title,
   company,
   jobType,
+  jobTypeSub,
   employmentType,
   curation,
   logoUrl
@@ -43,10 +45,9 @@ export default function JobCard({
       {/* 텍스트 정보 영역 */}
       <div className="flex flex-col justify-center flex-1 min-w-0">
         <div className="space-y-1.5">
-          <p className="font-bold text-lg text-black leading-tight">{category}</p>
+          <p className="font-medium text-sm text-gray-500 leading-tight">{company} | {category}</p>
           <p className="font-bold text-xl text-black leading-tight">{title}</p>
-          <p className="font-bold text-lg text-black leading-tight">{company}</p>
-          <p className="font-medium text-base text-black leading-tight">{jobType} |  {employmentType}</p>
+          <p className="font-medium text-base text-black leading-tight">{jobType} | {jobTypeSub} | {employmentType}</p>
           <p className="font-medium text-base text-black leading-tight">{curation}</p>
         </div>
       </div>

@@ -18,6 +18,7 @@ interface JobData {
   title: string;
   company: string;
   jobType: string;
+  jobTypeSub: string;
   employmentType: string;
   curation: string;
   logoUrl?: string;
@@ -60,7 +61,7 @@ function FilterButton({ label, options = [], onClick, isOpen = false, onSelect, 
 }
 
 const filterOptions = {
-  직무: ['전체보기', '마케팅', '세일즈', '기획/운영', '인사/HR/경영관리'],
+  직무: ['전체보기', '세일즈/마케팅', '인사/HR', '기획', 'CX/운영', '디자인'],
   '커리어 여정': ['전체보기', '첫 커리어', '인턴 1회', '인턴 2회 이상', '신입'],
   카테고리: ['전체보기', '혁신의숲 어워즈'],
   '투자 시리즈': ['전체보기', 'seed', 'pre-A', 'seriesA', 'seriesB', 'seriesC', 'seriesD', 'IPO', 'M&A'],
@@ -111,13 +112,15 @@ export default function JobsPage() {
             id,
             job_title,
             job_category_main,
+            job_category_sub,
             employment_type,
             is_active,
             is_liberal,
             companies (
               company_name,
               industry,
-              logo_url
+              logo_url,
+              categories
             )
           `)
           .eq('is_active', true)
@@ -130,10 +133,13 @@ export default function JobsPage() {
         // 데이터를 JobData 형식으로 변환
         const transformedJobs: JobData[] = data.map((item: any) => ({
           id: item.id,
-          category: item.job_category_main || '카테고리명',
+          category: item.companies?.categories?.length > 0 
+            ? item.companies.categories.join(', ') 
+            : '스타트업',
           title: item.job_title,
           company: item.companies?.company_name || '회사명',
           jobType: item.job_category_main || '직무 카테고리',
+          jobTypeSub: item.job_category_sub || '직무 카테고리',
           employmentType: item.employment_type || '고용형태',
           curation: '큐레이션',
           logoUrl: item.companies?.logo_url || undefined
@@ -312,6 +318,7 @@ export default function JobsPage() {
             title={job.title}
             company={job.company}
             jobType={job.jobType}
+            jobTypeSub={job.jobTypeSub}
             employmentType={job.employmentType}
             curation={job.curation}
             logoUrl={job.logoUrl}
