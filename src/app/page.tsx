@@ -1,28 +1,6 @@
 import JobsPage from '@/components/JobsPage';
 import { supabase } from '@/lib/supabase';
 
-// 타입 정의
-interface Company {
-  company_name: string;
-  industry: string;
-  logo_url?: string;
-  categories: string[];
-  investment_series: string;
-  revenue: string;
-  employee_count: string;
-}
-
-interface JobWithCompany {
-  id: number;
-  job_title: string;
-  job_category_main: string;
-  job_category_sub: string;
-  employment_type: string;
-  is_active: boolean;
-  is_liberal: boolean;
-  companies: Company | null;
-}
-
 // 정적 생성 설정 - 1시간마다 재생성
 export const revalidate = 86400;
 
