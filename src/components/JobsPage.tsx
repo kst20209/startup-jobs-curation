@@ -1,7 +1,6 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import JobCard from './JobCard';
-import { supabase } from '../lib/supabase';
 
 interface FilterButtonProps {
   label: string;
@@ -22,6 +21,10 @@ interface JobData {
   employmentType: string;
   curation: string;
   logoUrl?: string;
+}
+
+interface JobsPageProps {
+  allJobs: any[];
 }
 
 function FilterButton({ label, options = [], onClick, isOpen = false, onSelect, selectedText }: FilterButtonProps) {
@@ -61,101 +64,144 @@ function FilterButton({ label, options = [], onClick, isOpen = false, onSelect, 
 }
 
 const filterOptions = {
-  직무: ['전체보기', '세일즈/마케팅', '인사/HR', '기획', 'CX/운영', '디자인'],
+  직무: ['전체보기', '세일즈/마케팅', '기획', '인사/HR', 'CX/운영', '디자인'],
   '커리어 여정': ['전체보기', '첫 커리어', '인턴 1회', '인턴 2회 이상', '신입'],
   카테고리: ['전체보기', '혁신의숲 어워즈'],
-  '투자 시리즈': ['전체보기', 'seed', 'pre-A', 'seriesA', 'seriesB', 'seriesC', 'seriesD', 'IPO', 'M&A'],
-  매출: ['전체보기', '0~1억', '1~10억', '10~50억', '50억~100억', '100억 이상', '500억 이상'],
-  '임직원 수': ['전체보기', '0~10명', '11~50명', '51~100명', '100명 이상'],
-  산업: ['전체보기', 'IT', '금융', '제조', '서비스', '유통'],
+  '투자 시리즈': ['전체보기', 'pre-A', 'Series A'],
+  매출: ['전체보기', '0~30억', '30~200억', '200~500억', '500억 이상'],
+  '임직원 수': ['전체보기', '0~50명', '50~100명', '100~200명', '200명 이상'],
+  산업: ['전체보기', '헬스케어/바이오', '통신/보안/데이터', '홈리빙/펫', '콘텐츠/예술', '교육'],
   지역: ['전체보기', '서울', '경기', '부산', '대구', '광주']
+};
+
+// 매출 필터링 헬퍼 함수
+const matchesRevenueFilter = (revenue: string, filter: string): boolean => {
+  const revenueNum = parseFloat(revenue.replace(/[^0-9.]/g, ''));
+  
+  switch (filter) {
+    case '0~30억':
+      return revenueNum <= 30;
+    case '30~200억':
+      return revenueNum > 30 && revenueNum <= 200;
+    case '200~500억':
+      return revenueNum > 200 && revenueNum <= 500;
+    case '500억 이상':
+      return revenueNum > 500;
+    default:
+      return true;
+  }
+};
+
+// 임직원 수 필터링 헬퍼 함수
+const matchesEmployeeFilter = (employeeCount: string, filter: string): boolean => {
+  const count = parseInt(employeeCount);
+  
+  switch (filter) {
+    case '0~50명':
+      return count <= 50;
+    case '50~100명':
+      return count > 50 && count <= 100;
+    case '100~200명':
+      return count > 100 && count <= 200;
+    case '200명 이상':
+      return count > 200;
+    default:
+      return true;
+  }
 };
 
 // 커리어 여정별 자동 필터 설정
 const careerJourneyFilters: {[key: string]: {[key: string]: string[]}} = {
   '첫 커리어': {
-    '투자 시리즈': ['seed', 'pre-A'],
-    매출: ['0~1억'],
-    '임직원 수': ['0~10명']
+    '투자 시리즈': ['pre-A'],
+    매출: ['0~30억'],
+    '임직원 수': ['0~50명']
   },
   '인턴 1회': {
-    '투자 시리즈': ['seed', 'seriesA'],
-    매출: ['1~10억'],
-    '임직원 수': ['11~50명']
+    '투자 시리즈': ['pre-A', 'Series A'],
+    매출: ['0~30억', '30~200억'],
+    '임직원 수': ['0~50명', '50~100명']
   },
   '인턴 2회 이상': {
-    '투자 시리즈': ['seriesA', 'seriesB'],
-    매출: ['10~50억'],
-    '임직원 수': ['51~100명']
+    '투자 시리즈': ['Series A'],
+    매출: ['30~200억'],
+    '임직원 수': ['50~100명', '100~200명']
   },
   '신입': {
-    '투자 시리즈': ['seriesB', 'seriesC'],
-    매출: ['50억~100억'],
-    '임직원 수': ['100명 이상']
+    '투자 시리즈': ['Series A'],
+    매출: ['200~500억', '500억 이상'],
+    '임직원 수': ['100~200명', '200명 이상']
   }
 };
 
-export default function JobsPage() {
+export default function JobsPage({ allJobs }: JobsPageProps) {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [selectedFilters, setSelectedFilters] = useState<{[key: string]: string[]}>({});
-  const [jobs, setJobs] = useState<JobData[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchJobs = async () => {
-      try {
-        setLoading(true);
-        const { data, error } = await supabase
-          .from('job_post_curation')
-          .select(`
-            id,
-            job_title,
-            job_category_main,
-            job_category_sub,
-            employment_type,
-            is_active,
-            is_liberal,
-            companies (
-              company_name,
-              industry,
-              logo_url,
-              categories
-            )
-          `)
-          .eq('is_active', true)
-          .eq('is_liberal', true);
+  // 모든 데이터를 JobData 형식으로 변환
+  const transformedAllJobs: JobData[] = allJobs.map((item: any) => ({
+    id: item.id,
+    category: item.companies?.categories?.length > 0 
+      ? item.companies.categories.join(', ') 
+      : '스타트업',
+    title: item.job_title,
+    company: item.companies?.company_name || '회사명',
+    jobType: item.job_category_main || '직무 카테고리',
+    jobTypeSub: item.job_category_sub || '직무 카테고리',
+    employmentType: item.employment_type || '고용형태',
+    curation: '큐레이션',
+    logoUrl: item.companies?.logo_url || undefined,
+    // 필터링을 위한 원본 데이터 보존
+    _originalData: item
+  }));
 
-        if (error) {
-          throw error;
-        }
-
-        // 데이터를 JobData 형식으로 변환
-        const transformedJobs: JobData[] = data.map((item: any) => ({
-          id: item.id,
-          category: item.companies?.categories?.length > 0 
-            ? item.companies.categories.join(', ') 
-            : '스타트업',
-          title: item.job_title,
-          company: item.companies?.company_name || '회사명',
-          jobType: item.job_category_main || '직무 카테고리',
-          jobTypeSub: item.job_category_sub || '직무 카테고리',
-          employmentType: item.employment_type || '고용형태',
-          curation: '큐레이션',
-          logoUrl: item.companies?.logo_url || undefined
-        }));
-
-        setJobs(transformedJobs);
-      } catch (err) {
-        setError('채용공고를 불러오는데 실패했습니다.');
-        console.error(err);
-      } finally {
-        setLoading(false);
+  // 클라이언트 사이드 필터링 (즉시 계산)
+  const jobs = transformedAllJobs.filter((job: any) => {
+    const company = job._originalData.companies;
+    
+    // 직무 필터
+    if (selectedFilters.직무 && selectedFilters.직무.length > 0) {
+      if (!selectedFilters.직무.includes(job.jobType)) {
+        return false;
       }
-    };
+    }
 
-    fetchJobs();
-  }, []);
+    // 투자 시리즈 필터
+    if (selectedFilters['투자 시리즈'] && selectedFilters['투자 시리즈'].length > 0) {
+      const investmentSeries = company?.investment_series;
+      if (!investmentSeries || !selectedFilters['투자 시리즈'].includes(investmentSeries)) {
+        return false;
+      }
+    }
+
+    // 산업 필터
+    if (selectedFilters.산업 && selectedFilters.산업.length > 0) {
+      const industry = company?.industry;
+      if (!industry || !selectedFilters.산업.includes(industry)) {
+        return false;
+      }
+    }
+
+    // 매출 필터
+    if (selectedFilters.매출 && selectedFilters.매출.length > 0) {
+      const revenueFilter = selectedFilters.매출[0];
+      const revenue = company?.revenue;
+      if (revenue && !matchesRevenueFilter(revenue, revenueFilter)) {
+        return false;
+      }
+    }
+
+    // 임직원 수 필터
+    if (selectedFilters['임직원 수'] && selectedFilters['임직원 수'].length > 0) {
+      const employeeFilter = selectedFilters['임직원 수'][0];
+      const employeeCount = company?.employee_count;
+      if (employeeCount && !matchesEmployeeFilter(employeeCount, employeeFilter)) {
+        return false;
+      }
+    }
+
+    return true;
+  }).map(({ _originalData, ...job }: any) => job); // 원본 데이터 제거
 
   const handleDropdownToggle = (label: string) => {
     setOpenDropdown(openDropdown === label ? null : label);
@@ -217,8 +263,7 @@ export default function JobsPage() {
     return filterType;
   };
 
-  if (loading) return <div className="text-center py-10">채용공고를 불러오는 중...</div>;
-  if (error) return <div className="text-center py-10 text-red-500">{error}</div>;
+
 
   return (
     <div className="bg-white rounded-lg max-w-[1280px] mx-auto p-8">
