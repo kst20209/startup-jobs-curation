@@ -1,6 +1,7 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import JobCard from './JobCard';
+import { supabase } from '../lib/supabase';
 
 interface FilterButtonProps {
   label: string;
@@ -9,6 +10,17 @@ interface FilterButtonProps {
   isOpen?: boolean;
   onSelect?: (filterType: string, option: string) => void;
   selectedText?: string;
+}
+
+interface JobData {
+  id: number;
+  category: string;
+  title: string;
+  company: string;
+  jobType: string;
+  employmentType: string;
+  curation: string;
+  logoUrl?: string;
 }
 
 function FilterButton({ label, options = [], onClick, isOpen = false, onSelect, selectedText }: FilterButtonProps) {
@@ -46,63 +58,6 @@ function FilterButton({ label, options = [], onClick, isOpen = false, onSelect, 
     </div>
   );
 }
-
-const sampleJobs = [
-  {
-    id: 1,
-    category: "카테고리명",
-    title: "채용공고명",
-    company: "기업명",
-    jobType: "직무 카테고리",
-    employmentType: "고용형태",
-    curation: "큐레이션"
-  },
-  {
-    id: 2,
-    category: "카테고리명",
-    title: "채용공고명",
-    company: "기업명",
-    jobType: "직무 카테고리",
-    employmentType: "고용형태",
-    curation: "큐레이션"
-  },
-  {
-    id: 3,
-    category: "카테고리명",
-    title: "채용공고명",
-    company: "기업명",
-    jobType: "직무 카테고리",
-    employmentType: "고용형태",
-    curation: "큐레이션"
-  },
-  {
-    id: 4,
-    category: "카테고리명",
-    title: "채용공고명",
-    company: "기업명",
-    jobType: "직무 카테고리",
-    employmentType: "고용형태",
-    curation: "큐레이션"
-  },
-  {
-    id: 5,
-    category: "카테고리명",
-    title: "채용공고명",
-    company: "기업명",
-    jobType: "직무 카테고리",
-    employmentType: "고용형태",
-    curation: "큐레이션"
-  },
-  {
-    id: 6,
-    category: "카테고리명",
-    title: "채용공고명",
-    company: "기업명",
-    jobType: "직무 카테고리",
-    employmentType: "고용형태",
-    curation: "큐레이션"
-  }
-];
 
 const filterOptions = {
   직무: ['전체보기', '마케팅', '세일즈', '기획/운영', '인사/HR/경영관리'],
@@ -142,6 +97,59 @@ const careerJourneyFilters: {[key: string]: {[key: string]: string[]}} = {
 export default function JobsPage() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [selectedFilters, setSelectedFilters] = useState<{[key: string]: string[]}>({});
+  const [jobs, setJobs] = useState<JobData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        setLoading(true);
+        const { data, error } = await supabase
+          .from('job_post_curation')
+          .select(`
+            id,
+            job_title,
+            job_category_main,
+            employment_type,
+            is_active,
+            is_liberal,
+            companies (
+              company_name,
+              industry,
+              logo_url
+            )
+          `)
+          .eq('is_active', true)
+          .eq('is_liberal', true);
+
+        if (error) {
+          throw error;
+        }
+
+        // 데이터를 JobData 형식으로 변환
+        const transformedJobs: JobData[] = data.map((item: any) => ({
+          id: item.id,
+          category: item.job_category_main || '카테고리명',
+          title: item.job_title,
+          company: item.companies?.company_name || '회사명',
+          jobType: item.job_category_main || '직무 카테고리',
+          employmentType: item.employment_type || '고용형태',
+          curation: '큐레이션',
+          logoUrl: item.companies?.logo_url || undefined
+        }));
+
+        setJobs(transformedJobs);
+      } catch (err) {
+        setError('채용공고를 불러오는데 실패했습니다.');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
 
   const handleDropdownToggle = (label: string) => {
     setOpenDropdown(openDropdown === label ? null : label);
@@ -202,6 +210,9 @@ export default function JobsPage() {
     }
     return filterType;
   };
+
+  if (loading) return <div className="text-center py-10">채용공고를 불러오는 중...</div>;
+  if (error) return <div className="text-center py-10 text-red-500">{error}</div>;
 
   return (
     <div className="bg-white rounded-lg max-w-[1280px] mx-auto p-8">
@@ -294,7 +305,7 @@ export default function JobsPage() {
 
       {/* 채용공고 카드 그리드 (2열) - 간격 조정 */}
       <div className="grid grid-cols-2 gap-x-6 gap-y-5 max-w-[1100px] mx-auto">
-        {sampleJobs.map((job) => (
+        {jobs.map((job) => (
           <JobCard
             key={job.id}
             category={job.category}
@@ -303,6 +314,7 @@ export default function JobsPage() {
             jobType={job.jobType}
             employmentType={job.employmentType}
             curation={job.curation}
+            logoUrl={job.logoUrl}
           />
         ))}
       </div>
