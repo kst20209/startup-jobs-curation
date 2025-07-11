@@ -53,6 +53,7 @@ async function getFilteredJobs(searchParams: Promise<{ [key: string]: string | s
       job_category_main,
       job_category_sub,
       employment_type,
+      source_url,
       is_active,
       is_liberal,
       companies (

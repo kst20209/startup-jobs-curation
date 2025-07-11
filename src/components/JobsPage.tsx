@@ -12,6 +12,7 @@ interface JobData {
   employmentType: string;
   curation: string;
   logoUrl?: string;
+  sourceUrl: string;
 }
 
 interface JobsPageProps {
@@ -34,7 +35,8 @@ export default function JobsPage({ initialJobs, currentFilters }: JobsPageProps)
     jobTypeSub: item.job_category_sub || '직무 카테고리',
     employmentType: item.employment_type || '고용형태',
     curation: '큐레이션',
-    logoUrl: item.companies?.logo_url || undefined
+    logoUrl: item.companies?.logo_url || undefined,
+    sourceUrl: item.source_url || ''
   }));
 
   return (
@@ -67,6 +69,7 @@ export default function JobsPage({ initialJobs, currentFilters }: JobsPageProps)
             employmentType={job.employmentType}
             curation={job.curation}
             logoUrl={job.logoUrl}
+            sourceUrl={job.sourceUrl}
           />
         ))}
       </div>
