@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import AdminModal from './AdminModal'
 
-const ADMIN_SECRET = '/admin-공고추가'
+const ADMIN_SECRET = process.env.NEXT_PUBLIC_ADMIN_SECRET
 
 interface FeedbackModalProps {
   isOpen: boolean
