@@ -40,24 +40,24 @@ export default function JobsPage({ initialJobs, currentFilters }: JobsPageProps)
   }));
 
   return (
-    <div className="bg-white rounded-lg max-w-[1280px] mx-auto p-8">
+    <div className="bg-white rounded-lg max-w-[1280px] mx-auto p-4 md:p-8">
       {/* 메인 타이틀 */}
-      <div className="text-center mb-8">
-        <h1 className="font-bold text-4xl text-black leading-[38px] mb-4">
+      <div className="text-center mb-6 md:mb-8">
+        <h1 className="font-bold text-2xl md:text-4xl text-black leading-tight md:leading-[38px] mb-3 md:mb-4 px-2">
           문과 취업준비생에게 딱 맞는 채용공고만 보여드립니다
         </h1>
-        <p className="font-normal text-xl text-black leading-7 text-center max-w-[872px] mx-auto">
-          &apos;내가 잘할 수 있을까?&apos;, &apos;지원해도 괜찮을까?&apos; <br />
-          처음이라 더 조심스러운 그 마음, 잘 알고 있습니다. <br />
-          그래서 여러분이 지원해볼만한 공고만 엄선했습니다.
+        <p className="font-normal text-base md:text-xl text-black leading-6 md:leading-7 text-center max-w-[872px] mx-auto px-4">
+          &apos;내가 잘할 수 있을까?&apos;, &apos;지원해도 괜찮을까?&apos; <br className="hidden md:block" />
+          <span className="md:hidden"> </span>처음이라 더 조심스러운 그 마음, 잘 알고 있습니다. <br className="hidden md:block" />
+          <span className="md:hidden"> </span>그래서 여러분이 지원해볼만한 공고만 엄선했습니다.
         </p>
       </div>
 
       {/* 필터 섹션 - 클라이언트 컴포넌트 */}
       <FilterSection currentFilters={currentFilters} />
 
-      {/* 채용공고 카드 그리드 (2열) - 서버에서 렌더링 */}
-      <div className="grid grid-cols-2 gap-x-6 gap-y-5 max-w-[1100px] mx-auto">
+      {/* 채용공고 카드 그리드 - 모바일: 1열, 데스크탑: 2열 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-x-6 md:gap-y-5 max-w-[1100px] mx-auto">
         {jobs.map((job) => (
           <JobCard
             key={job.id}
@@ -75,8 +75,8 @@ export default function JobsPage({ initialJobs, currentFilters }: JobsPageProps)
       </div>
 
       {/* 하단 텍스트 */}
-      <div className="text-center mt-20">
-        <p className="font-bold text-4xl text-black leading-tight">
+      <div className="text-center mt-12 md:mt-20 px-4">
+        <p className="font-bold text-2xl md:text-4xl text-black leading-tight">
           본인에게 딱 맞는 채용공고만 받아 보고 싶으신가요?
         </p>
       </div>

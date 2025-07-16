@@ -16,27 +16,27 @@ function FilterButton({ label, options = [], onClick, isOpen = false, onSelect, 
     <div className="relative">
       <button 
         onClick={onClick}
-        className="bg-gray-200 rounded-md px-5 py-2.5 flex items-center gap-2 min-w-[130px] h-[38px] hover:bg-gray-300 transition-colors"
+        className="bg-gray-200 rounded-md px-3 md:px-5 py-2.5 flex items-center gap-2 min-w-[110px] md:min-w-[130px] h-[38px] hover:bg-gray-300 transition-colors text-sm md:text-base"
       >
-        <span className="font-semibold text-base text-center text-black flex-1">{selectedText || label}</span>
+        <span className="font-semibold text-center text-black flex-1 truncate">{selectedText || label}</span>
         <svg 
-          width="18" 
-          height="18" 
+          width="16" 
+          height="16" 
           viewBox="0 0 22 22" 
           fill="none" 
-          className={`text-black transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          className={`text-black transition-transform flex-shrink-0 md:w-[18px] md:h-[18px] ${isOpen ? 'rotate-180' : ''}`}
         >
           <path d="M6 9L11 14L16 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </button>
       
       {isOpen && options.length > 0 && (
-        <div className="absolute top-full left-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg z-10 min-w-[130px]">
+        <div className="absolute top-full left-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg z-10 min-w-[110px] md:min-w-[130px] max-w-[200px]">
           {options.map((option, index) => (
             <button
               key={index}
               onClick={() => onSelect?.(label, option)}
-              className="w-full text-left px-4 py-2.5 text-sm hover:bg-gray-100 first:rounded-t-md last:rounded-b-md"
+              className="w-full text-left px-3 md:px-4 py-2.5 text-xs md:text-sm hover:bg-gray-100 first:rounded-t-md last:rounded-b-md"
             >
               {option}
             </button>
@@ -146,9 +146,9 @@ export default function FilterSection({ currentFilters }: FilterSectionProps) {
   };
 
   return (
-    <div className="max-w-[1100px] mx-auto">
-      {/* 첫 번째 필터 행 */}
-      <div className="flex gap-3 mb-4">
+    <div className="max-w-[1100px] mx-auto px-2 md:px-0">
+      {/* 첫 번째 필터 행: 직무, 커리어 여정 */}
+      <div className="flex gap-2 md:gap-3 mb-3 md:mb-4 flex-wrap">
         <FilterButton 
           label="직무" 
           options={filterOptions.직무}
@@ -167,8 +167,8 @@ export default function FilterSection({ currentFilters }: FilterSectionProps) {
         />
       </div>
 
-      {/* 두 번째 필터 행 */}
-      <div className="flex gap-3 mb-10 flex-wrap">
+      {/* 두 번째 필터 행: 나머지 필터들 */}
+      <div className="flex gap-2 md:gap-3 mb-6 md:mb-10 flex-wrap">
         <FilterButton 
           label="카테고리" 
           options={filterOptions.카테고리}
