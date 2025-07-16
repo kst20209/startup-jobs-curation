@@ -1,5 +1,6 @@
 import './globals.css';
 import { ReactNode } from 'react';
+import Navbar from '@/components/Navbar';
 
 export const metadata = {
   title: '오공고 - 오늘의 공고',
@@ -38,7 +39,10 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
