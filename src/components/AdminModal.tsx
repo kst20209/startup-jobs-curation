@@ -22,14 +22,11 @@ interface AdminModalProps {
 export default function AdminModal({ isOpen, onClose }: AdminModalProps) {
   // 기업 목록 fetch
   const [companyList, setCompanyList] = useState<{ id: number, company_name: string }[]>([])
-  const [companyLoading, setCompanyLoading] = useState(false)
 
   useEffect(() => {
     if (!isOpen) return
-    setCompanyLoading(true)
     supabase.from('companies').select('id, company_name').then(({ data }) => {
       setCompanyList(data || [])
-      setCompanyLoading(false)
     })
   }, [isOpen])
 
@@ -46,7 +43,6 @@ export default function AdminModal({ isOpen, onClose }: AdminModalProps) {
   })
   const [companySubmitting, setCompanySubmitting] = useState(false)
   const [companyStatus, setCompanyStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  const [companyId, setCompanyId] = useState<number | null>(null)
 
   const [jobForm, setJobForm] = useState({
     company_id: '',
@@ -97,7 +93,6 @@ export default function AdminModal({ isOpen, onClose }: AdminModalProps) {
       if (error || !data || !data[0]?.id) {
         setCompanyStatus('error')
       } else {
-        setCompanyId(data[0].id)
         setCompanyStatus('success')
         // 등록 후 공고 폼의 company_id도 자동 선택
         setJobForm(f => ({...f, company_id: String(data[0].id)}))
