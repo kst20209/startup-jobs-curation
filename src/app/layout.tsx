@@ -3,11 +3,11 @@ import { ReactNode } from 'react';
 import Navbar from '@/components/Navbar';
 
 export const metadata = {
-  title: '오공고 - 오늘의 공고',
-  description: '문과생을 위한 채용공고만 엄선해서 보여드립니다. 오늘의 스타트업, 오늘의 채용, 오직 문과생을 위해!',
+  title: '오늘의 공고, 오공고',
+  description: '커리어 여정에 딱 맞는 채용공고만 엄선해서 보여드립니다. 오늘의 스타트업, 오늘의 채용, 당신의 성장을 위해!',
   openGraph: {
     title: '오공고 - 오늘의 공고',
-    description: '문과생을 위한 채용공고만 엄선해서 보여드립니다. 오늘의 스타트업, 오늘의 채용, 오직 문과생을 위해!',
+    description: '커리어 여정에 딱 맞는 채용공고만 엄선해서 보여드립니다. 오늘의 스타트업, 오늘의 채용, 당신의 성장을 위해!',
     type: 'website',
     url: 'https://ogongo.today',
     images: [
@@ -22,7 +22,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: '오공고 - 오늘의 공고',
-    description: '문과생을 위한 채용공고만 엄선해서 보여드립니다. 오늘의 스타트업, 오늘의 채용, 오직 문과생을 위해!',
+    description: '커리어 여정에 딱 맞는 채용공고만 엄선해서 보여드립니다. 오늘의 스타트업, 오늘의 채용, 당신의 성장을 위해!',
     images: ['/og-image.png']
   }
 };

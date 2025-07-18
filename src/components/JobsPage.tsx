@@ -42,9 +42,10 @@ export default function JobsPage({ initialJobs, currentFilters }: JobsPageProps)
   return (
     <div className="bg-white rounded-lg max-w-[1280px] mx-auto p-4 md:p-8">
       {/* 메인 타이틀 */}
-      <div className="text-center mb-6 md:mb-8">
-        <h1 className="font-bold text-2xl md:text-4xl text-black leading-tight md:leading-[38px] mb-3 md:mb-4 px-2">
-          문과 취업준비생에게 딱 맞는 채용공고만 보여드립니다
+      <div className="text-center mb-9 md:mb-12">
+        <h1 className="font-bold text-2xl md:text-4xl text-black leading-relaxed md:leading-[1.5] mb-9 md:mb-12 px-2">
+          오늘의 공고에서 커리어 여정에 <br />
+          딱 맞는 채용공고만 보여드립니다
         </h1>
         <p className="font-normal text-base md:text-xl text-black leading-6 md:leading-7 text-center max-w-[872px] mx-auto px-4">
           &apos;내가 잘할 수 있을까?&apos;, &apos;지원해도 괜찮을까?&apos; <br className="hidden md:block" />

@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "crawl:cashwalk": "node src/crawl/cashwalk.js",
-    "crawl:all": "node src/crawl/cashwalk.js"
+    "crawl:all": "node src/crawl/crawl.js",
+    "crawl:master": "node src/crawl/crawl.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.50.4",
