@@ -50,7 +50,7 @@ export default function Navbar() {
             className="bg-blue-50 hover:bg-blue-100 text-blue-600 font-semibold px-6 py-2.5 rounded-full border border-blue-200 transition-colors text-sm md:text-base min-w-[120px]"
             onClick={() => setIsFeedbackOpen(true)}
           >
-            공고 요청
+            제발 도와주세요 🙏
           </button>
         </div>
       </nav>
