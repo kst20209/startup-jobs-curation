@@ -35,7 +35,7 @@ export default function Navbar() {
           
           {/* 네비게이션 메뉴 (데스크톱) */}
           <div className="hidden md:flex items-center gap-6 ml-8">
-            <Link href="/jobs" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
+            <Link href="/" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">
               채용공고
             </Link>
             <Link href="/chat" className="text-gray-700 hover:text-gray-900 font-medium transition-colors">

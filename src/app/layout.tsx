@@ -1,5 +1,6 @@
 import './globals.css';
 import { ReactNode } from 'react';
+import Script from 'next/script';
 import Navbar from '@/components/Navbar';
 
 export const metadata = {
@@ -38,6 +39,20 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="icon" href="/favicon.ico" />
+        
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-7PEJC0TG9K"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-7PEJC0TG9K');
+          `}
+        </Script>
       </head>
       <body>
         <Navbar />
