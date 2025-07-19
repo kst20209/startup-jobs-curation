@@ -44,7 +44,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* 우측: 공고 요청 버튼 */}
+        {/* 우측: 피드백 요청 버튼 */}
         <div className="flex items-center">
           <button
             className="bg-blue-50 hover:bg-blue-100 text-blue-600 font-semibold px-6 py-2.5 rounded-full border border-blue-200 transition-colors text-sm md:text-base min-w-[120px]"

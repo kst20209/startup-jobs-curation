@@ -25,9 +25,12 @@ export default function JobCard({
   logoUrl,
   sourceUrl
 }: JobCardProps) {
+  // UTM 파라미터 추가
+  const urlWithUtm = `${sourceUrl}${sourceUrl.includes('?') ? '&' : '?'}utm_source=letscareer&utm_medium=letscareer_ogongo`;
+
   return (
     <a 
-      href={sourceUrl} 
+      href={urlWithUtm} 
       target="_blank" 
       rel="noopener noreferrer"
       className="block hover:opacity-90 transition-opacity"
