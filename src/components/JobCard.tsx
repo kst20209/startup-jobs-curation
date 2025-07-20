@@ -19,7 +19,6 @@ export default function JobCard({
   title,
   company,
   jobType,
-  jobTypeSub,
   employmentType,
   curation,
   logoUrl,

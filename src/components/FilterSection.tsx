@@ -12,13 +12,12 @@ interface FilterButtonProps {
   theme?: 'career' | 'job';
 }
 
-function FilterButton({ label, options = [], onClick, isOpen = false, onSelect, selectedText, theme = 'career' }: FilterButtonProps) {
+function FilterButton({ label, selectedText, theme = 'career' }: FilterButtonProps) {
   const isCareerTheme = theme === 'career';
   
   return (
     <div className="relative">
       <button 
-        onClick={onClick}
         className={`rounded-full px-2 md:px-2.5 py-1.5 flex items-center gap-2 hover:opacity-80 transition-colors text-sm md:text-base ${
           isCareerTheme 
             ? 'bg-blue-100 text-blue-500' 
@@ -201,8 +200,6 @@ export default function FilterSection({ currentFilters }: FilterSectionProps) {
         <FilterButton 
           label="커리어 필터" 
           theme="career"
-          isOpen={false}
-          onClick={() => {}}
         />
         <FilterDropdown 
           label="직무" 
@@ -229,8 +226,6 @@ export default function FilterSection({ currentFilters }: FilterSectionProps) {
         <FilterButton 
           label="공고 필터" 
           theme="job"
-          isOpen={false}
-          onClick={() => {}}
         />
         <FilterDropdown 
           label="카테고리" 
