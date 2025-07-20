@@ -32,7 +32,7 @@ export default function JobCard({
   const getCategoryColor = (category: string) => {
     const categoryColors: { [key: string]: string } = {
       '혁신의 숲 어워즈': '#B2FF00',
-      '스타트업': '#00BFFF',
+      '스타트업': '#70dbff',
       'IT/개발': '#8A2BE2',
       '마케팅': '#FF69B4',
       '디자인': '#FFD700',

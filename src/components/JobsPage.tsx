@@ -75,12 +75,7 @@ export default function JobsPage({ initialJobs, currentFilters }: JobsPageProps)
         ))}
       </div>
 
-      {/* 하단 텍스트 */}
-      <div className="text-center mt-12 md:mt-20 px-4">
-        <p className="font-bold text-2xl md:text-4xl text-black leading-tight">
-          본인에게 딱 맞는 채용공고만 받아 보고 싶으신가요?
-        </p>
-      </div>
+      
     </div>
   );
 } 

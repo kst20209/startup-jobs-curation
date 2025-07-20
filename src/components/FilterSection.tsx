@@ -9,34 +9,71 @@ interface FilterButtonProps {
   isOpen?: boolean;
   onSelect?: (filterType: string, option: string) => void;
   selectedText?: string;
+  theme?: 'career' | 'job';
 }
 
-function FilterButton({ label, options = [], onClick, isOpen = false, onSelect, selectedText }: FilterButtonProps) {
+function FilterButton({ label, options = [], onClick, isOpen = false, onSelect, selectedText, theme = 'career' }: FilterButtonProps) {
+  const isCareerTheme = theme === 'career';
+  
   return (
     <div className="relative">
       <button 
         onClick={onClick}
-        className="bg-gray-200 rounded-md px-3 md:px-5 py-2.5 flex items-center gap-2 min-w-[110px] md:min-w-[130px] h-[38px] hover:bg-gray-300 transition-colors text-sm md:text-base"
+        className={`rounded-full px-2 md:px-2.5 py-1.5 flex items-center gap-2 hover:opacity-80 transition-colors text-sm md:text-base ${
+          isCareerTheme 
+            ? 'bg-blue-100 text-blue-500' 
+            : 'bg-orange-100 text-orange-400'
+        }`}
       >
-        <span className="font-semibold text-center text-black flex-1 truncate">{selectedText || label}</span>
+        <span className="font-medium text-center flex-1 truncate">{selectedText || label}</span>
+      </button>
+    </div>
+  );
+}
+
+interface FilterDropdownProps {
+  label: string;
+  options?: string[];
+  onClick?: () => void;
+  isOpen?: boolean;
+  onSelect?: (filterType: string, option: string) => void;
+  selectedText?: string;
+  theme?: 'career' | 'job';
+}
+
+function FilterDropdown({ label, options = [], onClick, isOpen = false, onSelect, selectedText, theme = 'career' }: FilterDropdownProps) {
+  const isCareerTheme = theme === 'career';
+  const accentColor = isCareerTheme ? 'text-blue-500' : 'text-orange-400';
+  
+  // 선택된 값이 있으면 해당 값을 표시, 없으면 "전체" 표시
+  const displayText = selectedText && selectedText !== label ? selectedText : '전체';
+  
+  return (
+    <div className="relative">
+      <button 
+        onClick={onClick}
+        className="bg-gray-50 border border-gray-200 rounded-md px-2 md:px-2.5 py-2 flex items-center gap-2.5 hover:bg-gray-100 transition-colors text-xs md:text-sm"
+      >
+        <span className="text-gray-900 flex-1 truncate">{label}</span>
+        <span className={`font-semibold ${accentColor}`}>{displayText}</span>
         <svg 
           width="16" 
           height="16" 
           viewBox="0 0 22 22" 
           fill="none" 
-          className={`text-black transition-transform flex-shrink-0 md:w-[18px] md:h-[18px] ${isOpen ? 'rotate-180' : ''}`}
+          className={`text-gray-500 transition-transform flex-shrink-0 md:w-[16px] md:h-[16px] ${isOpen ? 'rotate-180' : ''}`}
         >
           <path d="M6 9L11 14L16 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </button>
       
       {isOpen && options.length > 0 && (
-        <div className="absolute top-full left-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg z-10 min-w-[110px] md:min-w-[130px] max-w-[200px]">
+        <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-10 min-w-[160px] max-w-[200px]">
           {options.map((option, index) => (
             <button
               key={index}
               onClick={() => onSelect?.(label, option)}
-              className="w-full text-left px-3 md:px-4 py-2.5 text-xs md:text-sm hover:bg-gray-100 first:rounded-t-md last:rounded-b-md"
+              className="w-full text-left px-3 md:px-4 py-2 text-sm md:text-base hover:bg-gray-50 first:rounded-t-md last:rounded-b-md text-gray-700 whitespace-nowrap"
             >
               {option}
             </button>
@@ -101,10 +138,14 @@ export default function FilterSection({ currentFilters }: FilterSectionProps) {
     if (option === '전체보기') {
       // 전체보기 선택 시 해당 필터 제거
       if (filterType === '직무') params.delete('job');
+      else if (filterType === '커리어 여정') params.delete('careerJourney');
       else if (filterType === '투자 시리즈') params.delete('investment');
       else if (filterType === '산업') params.delete('industry');
       else if (filterType === '매출') params.delete('revenue');
       else if (filterType === '임직원 수') params.delete('employees');
+      else if (filterType === '카테고리') params.delete('category');
+      else if (filterType === '투자') params.delete('investment');
+      else if (filterType === '지역') params.delete('location');
       
       // 커리어 여정 전체보기시 자동 필터도 제거
       if (filterType === '커리어 여정') {
@@ -115,10 +156,14 @@ export default function FilterSection({ currentFilters }: FilterSectionProps) {
     } else {
       // 일반 필터 선택
       if (filterType === '직무') params.set('job', option);
+      else if (filterType === '커리어 여정') params.set('careerJourney', option);
       else if (filterType === '투자 시리즈') params.set('investment', option);
       else if (filterType === '산업') params.set('industry', option);
       else if (filterType === '매출') params.set('revenue', option);
       else if (filterType === '임직원 수') params.set('employees', option);
+      else if (filterType === '카테고리') params.set('category', option);
+      else if (filterType === '투자') params.set('investment', option);
+      else if (filterType === '지역') params.set('location', option);
       
       // 커리어 여정 선택시 자동 필터 적용
       if (filterType === '커리어 여정' && careerJourneyFilters[option]) {
@@ -137,85 +182,109 @@ export default function FilterSection({ currentFilters }: FilterSectionProps) {
     let currentValue = '';
     
     if (filterType === '직무') currentValue = currentFilters.job as string || '';
+    else if (filterType === '커리어 여정') currentValue = currentFilters.careerJourney as string || '';
     else if (filterType === '투자 시리즈') currentValue = currentFilters.investment as string || '';
     else if (filterType === '산업') currentValue = currentFilters.industry as string || '';
     else if (filterType === '매출') currentValue = currentFilters.revenue as string || '';
     else if (filterType === '임직원 수') currentValue = currentFilters.employees as string || '';
+    else if (filterType === '카테고리') currentValue = currentFilters.category as string || '';
+    else if (filterType === '투자') currentValue = currentFilters.investment as string || '';
+    else if (filterType === '지역') currentValue = currentFilters.location as string || '';
     
     return currentValue && currentValue !== '전체보기' ? currentValue : filterType;
   };
 
   return (
     <div className="max-w-[1100px] mx-auto px-2 md:px-0">
-      {/* 첫 번째 필터 행: 직무, 커리어 여정 */}
+      {/* 첫 번째 필터 행: 커리어 필터 (보라/파란색 테마) */}
       <div className="flex gap-2 md:gap-3 mb-3 md:mb-4 flex-wrap">
         <FilterButton 
+          label="커리어 필터" 
+          theme="career"
+          isOpen={false}
+          onClick={() => {}}
+        />
+        <FilterDropdown 
           label="직무" 
           options={filterOptions.직무}
           isOpen={openDropdown === '직무'}
           onClick={() => handleDropdownToggle('직무')}
           onSelect={handleOptionSelect}
           selectedText={getSelectedFilterText('직무')}
+          theme="career"
         />
-        <FilterButton 
+        <FilterDropdown 
           label="커리어 여정" 
           options={filterOptions['커리어 여정']}
           isOpen={openDropdown === '커리어 여정'}
           onClick={() => handleDropdownToggle('커리어 여정')}
           onSelect={handleOptionSelect}
           selectedText={getSelectedFilterText('커리어 여정')}
+          theme="career"
         />
       </div>
 
-      {/* 두 번째 필터 행: 나머지 필터들 */}
+      {/* 두 번째 필터 행: 공고 필터 (주황색 테마) */}
       <div className="flex gap-2 md:gap-3 mb-6 md:mb-10 flex-wrap">
         <FilterButton 
+          label="공고 필터" 
+          theme="job"
+          isOpen={false}
+          onClick={() => {}}
+        />
+        <FilterDropdown 
           label="카테고리" 
           options={filterOptions.카테고리}
           isOpen={openDropdown === '카테고리'}
           onClick={() => handleDropdownToggle('카테고리')}
           onSelect={handleOptionSelect}
           selectedText={getSelectedFilterText('카테고리')}
+          theme="job"
         />
-        <FilterButton 
-          label="투자 시리즈" 
+        <FilterDropdown 
+          label="투자" 
           options={filterOptions['투자 시리즈']}
           isOpen={openDropdown === '투자 시리즈'}
           onClick={() => handleDropdownToggle('투자 시리즈')}
           onSelect={handleOptionSelect}
           selectedText={getSelectedFilterText('투자 시리즈')}
+          theme="job"
         />
-        <FilterButton 
+        <FilterDropdown 
           label="매출" 
           options={filterOptions.매출}
           isOpen={openDropdown === '매출'}
           onClick={() => handleDropdownToggle('매출')}
           onSelect={handleOptionSelect}
           selectedText={getSelectedFilterText('매출')}
+          theme="job"
         />
-        <FilterButton 
+        <FilterDropdown 
           label="임직원 수" 
           options={filterOptions['임직원 수']}
           isOpen={openDropdown === '임직원 수'}
           onClick={() => handleDropdownToggle('임직원 수')}
           onSelect={handleOptionSelect}
           selectedText={getSelectedFilterText('임직원 수')}
+          theme="job"
         />
-        <FilterButton 
+        <FilterDropdown 
           label="산업" 
           options={filterOptions.산업}
           isOpen={openDropdown === '산업'}
           onClick={() => handleDropdownToggle('산업')}
           onSelect={handleOptionSelect}
           selectedText={getSelectedFilterText('산업')}
+          theme="job"
         />
-        <FilterButton 
+        <FilterDropdown 
           label="지역" 
           options={filterOptions.지역}
           isOpen={openDropdown === '지역'}
           onClick={() => handleDropdownToggle('지역')}
           onSelect={handleOptionSelect}
           selectedText={getSelectedFilterText('지역')}
+          theme="job"
         />
       </div>
     </div>
