@@ -29,7 +29,7 @@ export default function Navbar() {
               {/* <img src="/logo.svg" alt="오공고 로고" className="w-full h-full object-contain" /> */}
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-lg text-black tracking-tight">오늘의 공고, 오공고</span>
+              <span className="font-bold text-lg text-black tracking-tight hidden sm:inline">오늘의 공고, 오공고</span>
             </div>
           </Link>
           
@@ -47,10 +47,10 @@ export default function Navbar() {
         {/* 우측: 피드백 요청 버튼 */}
         <div className="flex items-center">
           <button
-            className="bg-blue-50 hover:bg-blue-100 text-blue-600 font-semibold px-6 py-2.5 rounded-full border border-blue-200 transition-colors text-sm md:text-base min-w-[120px]"
+            className="bg-[#5D5DF6]/10 hover:bg-[#5D5DF6]/20 text-[#5D5DF6] font-semibold px-3 py-1.5 sm:px-5 sm:py-2 rounded-full border border-[#5D5DF6]/30 transition-colors text-xs sm:text-sm min-w-[70px] sm:min-w-[110px]"
             onClick={() => setIsFeedbackOpen(true)}
           >
-            제발 도와주세요 🙏
+            <span className="inline">제발 도와주세요 🙏</span>
           </button>
         </div>
       </nav>

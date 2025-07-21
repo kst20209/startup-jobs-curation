@@ -40,7 +40,7 @@ export default function JobsPage({ initialJobs, currentFilters }: JobsPageProps)
   }));
 
   return (
-    <div className="bg-white rounded-lg max-w-[1280px] mx-auto p-4 md:p-8">
+    <div className="bg-white rounded-lg max-w-[1280px] mx-auto md:p-8">
       {/* 메인 타이틀 */}
       <div className="text-center mb-9 md:mb-12">
         <h1 className="font-bold text-2xl md:text-4xl text-black leading-relaxed md:leading-[1.5] mb-9 md:mb-12 px-2">
