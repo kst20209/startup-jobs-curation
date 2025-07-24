@@ -131,15 +131,15 @@ export default function JobCard({
     >
       <div className="bg-white rounded-lg p-4 md:p-5 w-full border border-gray-200 flex gap-3 md:gap-5 cursor-pointer hover:bg-gray-50 transition-colors jd_card">
         {/* 로고 영역 - 세로 중앙 정렬 */}
-        <div className="flex items-center">
-          <div className={`rounded flex-shrink-0 w-[60px] h-[60px] md:w-[80px] md:h-[80px] flex items-center justify-center ${logoUrl ? 'bg-white border border-gray-300' : 'bg-blue-500'}`}>
+        <div className="flex items-center jd_card">
+          <div className={`rounded flex-shrink-0 w-[60px] h-[60px] md:w-[80px] md:h-[80px] flex items-center justify-center ${logoUrl ? 'bg-white border border-gray-300' : 'bg-blue-500'} jd_card`}>
             {logoUrl ? (
               <Image 
                 src={logoUrl} 
                 alt={`${company} 로고`} 
                 width={80}
                 height={80}
-                className="w-full h-full object-contain rounded"
+                className="w-full h-full object-contain rounded jd_card"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
@@ -147,37 +147,37 @@ export default function JobCard({
                 }}
               />
             ) : null}
-            <span className={`text-white font-bold text-sm md:text-lg ${logoUrl ? 'hidden' : ''}`}>로고</span>
+            <span className={`text-white font-bold text-sm md:text-lg ${logoUrl ? 'hidden' : ''} jd_card`}>로고</span>
           </div>
         </div>
         
         {/* 텍스트 정보 영역 */}
-        <div className="flex flex-col justify-center flex-1 min-w-0 py-2">
-          <div className="space-y-2">
+        <div className="flex flex-col justify-center flex-1 min-w-0 py-2 jd_card">
+          <div className="space-y-2 jd_card">
             {/* 카테고리 */}
             <p 
-              className="font-bold text-sm md:text-base text-black leading-tight truncate px-2 py-1 rounded inline-block"
+              className="font-bold text-sm md:text-base text-black leading-tight truncate px-2 py-1 rounded inline-block jd_card"
               style={{ backgroundColor: getCategoryColor(category) }}
             >
               {category}
             </p>
             
             {/* 회사명 | 직무 카테고리 | 고용 형태 */}
-            <p className="font-medium text-xs md:text-sm text-gray-500 leading-tight truncate -mt-2">
+            <p className="font-medium text-xs md:text-sm text-gray-500 leading-tight truncate -mt-2 jd_card">
               {company} | {jobType} | {employmentType}
             </p>
             
             {/* 직무 제목 */}
-            <p className="font-bold text-base md:text-l text-black leading-tight line-clamp-1">{title}</p>
+            <p className="font-bold text-base md:text-l text-black leading-tight line-clamp-1 jd_card">{title}</p>
             
             {/* 큐레이션 정보 */}
-            <p className="font-bold text-xs md:text-sm text-black leading-tight">
+            <p className="font-bold text-xs md:text-sm text-black leading-tight jd_card">
               👉🏻 오공고 큐레이션
             </p>
             
             {/* 큐레이션 설명 */}
             <div 
-              className="font-medium text-xs md:text-sm text-black leading-medium line-clamp-5 min-h-[80px] md:min-h-[100px]"
+              className="font-medium text-xs md:text-sm text-black leading-medium line-clamp-5 min-h-[80px] md:min-h-[100px] jd_card"
               dangerouslySetInnerHTML={{ __html: parsedCuration }}
             />
           </div>
