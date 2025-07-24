@@ -55,7 +55,7 @@ function parseCurationText(text: string): string {
     // 색상 검증
     if (isValidColorName(color) || isValidHexColor(color)) {
       const hexColor = colorMap[color] || color;
-      return `<span style="color: ${hexColor}">${text}</span>`;
+      return `<span style="color: ${hexColor}" class="jd_card">${text}</span>`;
     }
     return text; // 유효하지 않은 색상이면 원본 텍스트 반환
   });
@@ -64,16 +64,16 @@ function parseCurationText(text: string): string {
     // 색상 검증
     if (isValidColorName(color) || isValidHexColor(color)) {
       const hexColor = colorMap[color] || color;
-      return `<span style="background-color: ${hexColor}">${text}</span>`;
+      return `<span style="background-color: ${hexColor}" class="jd_card">${text}</span>`;
     }
     return text; // 유효하지 않은 색상이면 원본 텍스트 반환
   });
   
   // 2. 마크다운 스타일 처리 - 화이트리스트 방식
-  result = result.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  result = result.replace(/\*(.*?)\*/g, '<em>$1</em>');
-  result = result.replace(/~~(.*?)~~/g, '<del>$1</del>');
-  result = result.replace(/__(.*?)__/g, '<u>$1</u>');
+  result = result.replace(/\*\*(.*?)\*\*/g, '<strong class="jd_card">$1</strong>');
+  result = result.replace(/\*(.*?)\*/g, '<em class="jd_card">$1</em>');
+  result = result.replace(/~~(.*?)~~/g, '<del class="jd_card">$1</del>');
+  result = result.replace(/__(.*?)__/g, '<u class="jd_card">$1</u>');
   
   // 3. 줄바꿈 처리 (실제 줄바꿈만 처리)
   result = result.replace(/\n/g, '<br>');
