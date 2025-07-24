@@ -1,3 +1,5 @@
+import MainHeadline from '@/components/MainHeadline';
+import Banner from '@/components/Banner';
 import JobsPage from '@/components/JobsPage';
 import { supabase } from '@/lib/supabase';
 
@@ -131,11 +133,10 @@ export default async function Home({
   const params = await searchParams;
 
   return (
-    <div className="min-h-screen bg-white p-8">
-      <JobsPage 
-        initialJobs={filteredJobs} 
-        currentFilters={params}
-      />
+    <div>
+      <MainHeadline />
+      <Banner />
+      <JobsPage initialJobs={filteredJobs} currentFilters={params} />
     </div>
   );
 }
