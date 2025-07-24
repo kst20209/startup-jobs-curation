@@ -78,11 +78,7 @@ function parseCurationText(text: string): string {
   // 3. 줄바꿈 처리 (실제 줄바꿈만 처리)
   result = result.replace(/\n/g, '<br>');
   
-  // 4. 최종 보안 검증 - 허용된 태그만 남기기
-  const allowedTags = ['strong', 'em', 'del', 'u', 'span', 'br'];
-  const allowedAttributes = ['style'];
-  
-  // 위험한 태그나 속성이 있으면 제거
+  // 4. 최종 보안 검증 - 위험한 태그나 속성이 있으면 제거
   result = result.replace(/<script[^>]*>.*?<\/script>/gi, '');
   result = result.replace(/<iframe[^>]*>.*?<\/iframe>/gi, '');
   result = result.replace(/<object[^>]*>.*?<\/object>/gi, '');

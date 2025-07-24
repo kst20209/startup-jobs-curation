@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 export default function ChatPage() {
   return (
@@ -288,12 +289,12 @@ export default function ChatPage() {
                     [렛츠커리어] 마케팅 채용공고 큐레이션
                   </div>
                   <div style={{ display: 'flex', marginTop: '6px' }}>
-                    <img src="https://iopen.kakaocdn.net/favicon.ico" style={{
+                    <Image src="https://iopen.kakaocdn.net/favicon.ico" style={{
                       width: '16px',
                       height: '16px',
                       minWidth: '16px',
                       marginRight: '6px'
-                    }} alt="" />
+                    }} alt="" width={16} height={16} />
                     <div style={{
                       fontSize: '12px',
                       lineHeight: '16px',
@@ -313,13 +314,13 @@ export default function ChatPage() {
                 }}>
                   <div style={{ position: 'absolute', inset: 0 }}>
                     <div style={{ width: '100%', height: '100%' }}>
-                      <img alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_003.png" style={{
+                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_003.png" style={{
                         display: 'block',
                         objectFit: 'cover',
                         borderRadius: '2px',
                         width: '100%',
                         height: '100%'
-                      }} />
+                      }} width={180} height={94} />
                     </div>
                   </div>
                 </div>
@@ -402,12 +403,12 @@ export default function ChatPage() {
                     [렛츠커리어] 세일즈 채용공고 큐레이션
                   </div>
                   <div style={{ display: 'flex', marginTop: '6px' }}>
-                    <img src="https://iopen.kakaocdn.net/favicon.ico" style={{
+                    <Image src="https://iopen.kakaocdn.net/favicon.ico" style={{
                       width: '16px',
                       height: '16px',
                       minWidth: '16px',
                       marginRight: '6px'
-                    }} alt="" />
+                    }} alt="" width={16} height={16} />
                     <div style={{
                       fontSize: '12px',
                       lineHeight: '16px',
@@ -427,13 +428,13 @@ export default function ChatPage() {
                 }}>
                   <div style={{ position: 'absolute', inset: 0 }}>
                     <div style={{ width: '100%', height: '100%' }}>
-                      <img alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_001.png" style={{
+                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_001.png" style={{
                         display: 'block',
                         objectFit: 'cover',
                         borderRadius: '2px',
                         width: '100%',
                         height: '100%'
-                      }} />
+                      }} width={180} height={94} />
                     </div>
                   </div>
                 </div>
@@ -516,12 +517,12 @@ export default function ChatPage() {
                     [렛츠커리어] 기획/운영 채용공고 큐레이션
                   </div>
                   <div style={{ display: 'flex', marginTop: '6px' }}>
-                    <img src="https://iopen.kakaocdn.net/favicon.ico" style={{
+                    <Image src="https://iopen.kakaocdn.net/favicon.ico" style={{
                       width: '16px',
                       height: '16px',
                       minWidth: '16px',
                       marginRight: '6px'
-                    }} alt="" />
+                    }} alt="" width={16} height={16} />
                     <div style={{
                       fontSize: '12px',
                       lineHeight: '16px',
@@ -541,13 +542,13 @@ export default function ChatPage() {
                 }}>
                   <div style={{ position: 'absolute', inset: 0 }}>
                     <div style={{ width: '100%', height: '100%' }}>
-                      <img alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_003.png" style={{
+                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_003.png" style={{
                         display: 'block',
                         objectFit: 'cover',
                         borderRadius: '2px',
                         width: '100%',
                         height: '100%'
-                      }} />
+                      }} width={180} height={94} />
                     </div>
                   </div>
                 </div>
@@ -630,12 +631,12 @@ export default function ChatPage() {
                     [렛츠커리어] 인사/HR/경영관리 채용공고 큐레이션
                   </div>
                   <div style={{ display: 'flex', marginTop: '6px' }}>
-                    <img src="https://iopen.kakaocdn.net/favicon.ico" style={{
+                    <Image src="https://iopen.kakaocdn.net/favicon.ico" style={{
                       width: '16px',
                       height: '16px',
                       minWidth: '16px',
                       marginRight: '6px'
-                    }} alt="" />
+                    }} alt="" width={16} height={16} />
                     <div style={{
                       fontSize: '12px',
                       lineHeight: '16px',
@@ -655,13 +656,13 @@ export default function ChatPage() {
                 }}>
                   <div style={{ position: 'absolute', inset: 0 }}>
                     <div style={{ width: '100%', height: '100%' }}>
-                      <img alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_002.png" style={{
+                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_002.png" style={{
                         display: 'block',
                         objectFit: 'cover',
                         borderRadius: '2px',
                         width: '100%',
                         height: '100%'
-                      }} />
+                      }} width={180} height={94} />
                     </div>
                   </div>
                 </div>
@@ -749,13 +750,13 @@ export default function ChatPage() {
                     alignItems: 'center',
                     marginLeft: '8px'
                   }}>
-                    <img style={{
+                    <Image style={{
                       width: '1.2em',
                       height: '1.2em',
                       borderRadius: '3px',
                       verticalAlign: '-0.22em',
                       marginRight: '0.3em'
-                    }} src="https://iopen.kakaocdn.net/favicon.ico" alt="" />
+                    }} src="https://iopen.kakaocdn.net/favicon.ico" alt="" width={19} height={19} />
                     <span style={{
                       borderBottom: '0.05em solid solid rgba(55,53,47,.25)',
                       fontWeight: 500,
