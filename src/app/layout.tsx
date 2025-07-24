@@ -5,12 +5,12 @@ import Navbar from '@/components/Navbar';
 
 export const metadata = {
   title: '오늘의 공고, 오공고',
-  description: '커리어 여정에 딱 맞는 채용공고만 엄선해서 보여드립니다. 오늘의 스타트업, 오늘의 채용, 당신의 성장을 위해!',
+  description: '놓치기 쉬운 채용공고, 오늘의 공고에서 확인하세요. 문과 취업준비생을 위한 커리어 맞춤 스타트업 채용공고를 매일 큐레이션해드립니다.',
   openGraph: {
-    title: '오공고 - 오늘의 공고',
-    description: '커리어 여정에 딱 맞는 채용공고만 엄선해서 보여드립니다. 오늘의 스타트업, 오늘의 채용, 당신의 성장을 위해!',
+    title: '오늘의 공고｜커리어 여정에 딱 맞는 스타트업 채용공고 추천',
+    description: '놓치기 쉬운 채용공고, 오늘의 공고에서 확인하세요. 문과 취업준비생을 위한 커리어 맞춤 스타트업 채용공고를 매일 큐레이션해드립니다.',
     type: 'website',
-    url: 'https://ogongo.today',
+    url: 'https://startup-jobs-curation.vercel.app',
     images: [
       {
         url: '/og-image.png',
@@ -22,8 +22,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '오공고 - 오늘의 공고',
-    description: '커리어 여정에 딱 맞는 채용공고만 엄선해서 보여드립니다. 오늘의 스타트업, 오늘의 채용, 당신의 성장을 위해!',
+    title: '오늘의 공고｜커리어 여정에 딱 맞는 스타트업 채용공고 추천',
+    description: '놓치기 쉬운 채용공고, 오늘의 공고에서 확인하세요. 문과 취업준비생을 위한 커리어 맞춤 스타트업 채용공고를 매일 큐레이션해드립니다.',
     images: ['/og-image.png']
   }
 };
