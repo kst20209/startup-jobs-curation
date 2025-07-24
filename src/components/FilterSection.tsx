@@ -51,7 +51,7 @@ function FilterDropdown({ label, options = [], onClick, isOpen = false, onSelect
     <div className="relative">
       <button 
         onClick={onClick}
-        className="bg-gray-50 border border-gray-200 rounded-md px-2 md:px-2.5 py-2 flex items-center gap-2.5 hover:bg-gray-100 transition-colors text-xs md:text-sm"
+        className="bg-gray-50 border border-gray-200 rounded-md px-2 md:px-2.5 py-2 flex items-center gap-2.5 hover:bg-gray-100 transition-colors text-xs md:text-sm filter"
       >
         <span className="text-gray-900 flex-1 truncate">{label}</span>
         <span className={`font-semibold ${accentColor}`}>{displayText}</span>
