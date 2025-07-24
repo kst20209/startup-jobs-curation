@@ -129,7 +129,7 @@ export default function JobCard({
       rel="noopener noreferrer"
       className="block hover:opacity-90 transition-opacity"
     >
-      <div className="bg-white rounded-lg p-4 md:p-5 w-full border border-gray-200 flex gap-3 md:gap-5 cursor-pointer hover:bg-gray-50 transition-colors">
+      <div className="bg-white rounded-lg p-4 md:p-5 w-full border border-gray-200 flex gap-3 md:gap-5 cursor-pointer hover:bg-gray-50 transition-colors jd_card">
         {/* 로고 영역 - 세로 중앙 정렬 */}
         <div className="flex items-center">
           <div className={`rounded flex-shrink-0 w-[60px] h-[60px] md:w-[80px] md:h-[80px] flex items-center justify-center ${logoUrl ? 'bg-white border border-gray-300' : 'bg-blue-500'}`}>

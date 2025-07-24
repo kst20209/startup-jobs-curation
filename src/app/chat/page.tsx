@@ -251,7 +251,7 @@ export default function ChatPage() {
             marginTop: '4px',
             marginBottom: '4px'
           }}>
-            <div style={{ display: 'flex' }}>
+            <div className="open_chat" style={{ display: 'flex' }}>
               <a href="https://open.kakao.com/o/g9JmRSFh" target="_blank" rel="noopener noreferrer" style={{
                 display: 'flex',
                 color: 'inherit',
@@ -365,7 +365,7 @@ export default function ChatPage() {
             marginTop: '4px',
             marginBottom: '4px'
           }}>
-            <div style={{ display: 'flex' }}>
+            <div className="open_chat" style={{ display: 'flex' }}>
               <a href="https://open.kakao.com/o/gZgMRSFh" target="_blank" rel="noopener noreferrer" style={{
                 display: 'flex',
                 color: 'inherit',
@@ -479,7 +479,7 @@ export default function ChatPage() {
             marginTop: '4px',
             marginBottom: '4px'
           }}>
-            <div style={{ display: 'flex' }}>
+            <div className="open_chat" style={{ display: 'flex' }}>
               <a href="https://open.kakao.com/o/gPDpSSFh" target="_blank" rel="noopener noreferrer" style={{
                 display: 'flex',
                 color: 'inherit',
@@ -593,7 +593,7 @@ export default function ChatPage() {
             marginTop: '4px',
             marginBottom: '4px'
           }}>
-            <div style={{ display: 'flex' }}>
+            <div className="open_chat" style={{ display: 'flex' }}>
               <a href="https://open.kakao.com/o/ghzwTSFh" target="_blank" rel="noopener noreferrer" style={{
                 display: 'flex',
                 color: 'inherit',
