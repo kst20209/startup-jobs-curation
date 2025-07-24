@@ -286,10 +286,10 @@ export default function ChatPage() {
                     minHeight: '24px',
                     marginBottom: '2px'
                   }}>
-                    [렛츠커리어] 마케팅 채용공고 큐레이션
+                    <span id="openTitle">[렛츠커리어] 마케팅 채용공고 큐레이션</span>
                   </div>
                   <div className="open_chat" style={{ display: 'flex', marginTop: '6px' }}>
-                    <Image src="https://iopen.kakaocdn.net/favicon.ico" className="open_chat" style={{
+                    <Image src="/kakao-favicon.png" className="open_chat" style={{
                       width: '16px',
                       height: '16px',
                       minWidth: '16px',
@@ -314,7 +314,7 @@ export default function ChatPage() {
                 }}>
                   <div className="open_chat" style={{ position: 'absolute', inset: 0 }}>
                     <div className="open_chat" style={{ width: '100%', height: '100%' }}>
-                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_003.png" className="open_chat" style={{
+                      <Image alt="" src="/kakaochat_1.png" className="open_chat" style={{
                         display: 'block',
                         objectFit: 'cover',
                         borderRadius: '2px',
@@ -400,10 +400,10 @@ export default function ChatPage() {
                     minHeight: '24px',
                     marginBottom: '2px'
                   }}>
-                    [렛츠커리어] 세일즈 채용공고 큐레이션
+                    <span id="openTitle">[렛츠커리어] 세일즈 채용공고 큐레이션</span>
                   </div>
                   <div className="open_chat" style={{ display: 'flex', marginTop: '6px' }}>
-                    <Image src="https://iopen.kakaocdn.net/favicon.ico" className="open_chat" style={{
+                    <Image src="/kakao-favicon.png" className="open_chat" style={{
                       width: '16px',
                       height: '16px',
                       minWidth: '16px',
@@ -428,7 +428,7 @@ export default function ChatPage() {
                 }}>
                   <div className="open_chat" style={{ position: 'absolute', inset: 0 }}>
                     <div className="open_chat" style={{ width: '100%', height: '100%' }}>
-                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_001.png" className="open_chat" style={{
+                      <Image alt="" src="/kakaochat_2.png" className="open_chat" style={{
                         display: 'block',
                         objectFit: 'cover',
                         borderRadius: '2px',
@@ -514,10 +514,10 @@ export default function ChatPage() {
                     minHeight: '24px',
                     marginBottom: '2px'
                   }}>
-                    [렛츠커리어] 기획/운영 채용공고 큐레이션
+                    <span id="openTitle">[렛츠커리어] 기획/운영 채용공고 큐레이션</span>
                   </div>
                   <div className="open_chat" style={{ display: 'flex', marginTop: '6px' }}>
-                    <Image src="https://iopen.kakaocdn.net/favicon.ico" className="open_chat" style={{
+                    <Image src="/kakao-favicon.png" className="open_chat" style={{
                       width: '16px',
                       height: '16px',
                       minWidth: '16px',
@@ -542,7 +542,7 @@ export default function ChatPage() {
                 }}>
                   <div className="open_chat" style={{ position: 'absolute', inset: 0 }}>
                     <div className="open_chat" style={{ width: '100%', height: '100%' }}>
-                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_003.png" className="open_chat" style={{
+                      <Image alt="" src="/kakaochat_1.png" className="open_chat" style={{
                         display: 'block',
                         objectFit: 'cover',
                         borderRadius: '2px',
@@ -628,10 +628,10 @@ export default function ChatPage() {
                     minHeight: '24px',
                     marginBottom: '2px'
                   }}>
-                    [렛츠커리어] 인사/HR/경영관리 채용공고 큐레이션
+                    <span id="openTitle">[렛츠커리어] 인사/HR/경영관리 채용공고 큐레이션</span>
                   </div>
                   <div className="open_chat" style={{ display: 'flex', marginTop: '6px' }}>
-                    <Image src="https://iopen.kakaocdn.net/favicon.ico" className="open_chat" style={{
+                    <Image src="/kakao-favicon.png" className="open_chat" style={{
                       width: '16px',
                       height: '16px',
                       minWidth: '16px',
@@ -656,7 +656,7 @@ export default function ChatPage() {
                 }}>
                   <div className="open_chat" style={{ position: 'absolute', inset: 0 }}>
                     <div className="open_chat" style={{ width: '100%', height: '100%' }}>
-                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_002.png" className="open_chat" style={{
+                      <Image alt="" src="/kakaochat_3.png" className="open_chat" style={{
                         display: 'block',
                         objectFit: 'cover',
                         borderRadius: '2px',
@@ -756,7 +756,7 @@ export default function ChatPage() {
                       borderRadius: '3px',
                       verticalAlign: '-0.22em',
                       marginRight: '0.3em'
-                    }} src="https://iopen.kakaocdn.net/favicon.ico" alt="" width={19} height={19} />
+                    }} src="/kakao-favicon.png" alt="" width={19} height={19} />
                     <span style={{
                       borderBottom: '0.05em solid solid rgba(55,53,47,.25)',
                       fontWeight: 500,

@@ -163,9 +163,9 @@ export default function JobCard({
             </p>
             
             {/* 회사명 | 직무 카테고리 | 고용 형태 */}
-            <p className="font-medium text-xs md:text-sm text-gray-500 leading-tight truncate -mt-2 jd_card">
+            <span id="jobTitle" className="font-medium text-xs md:text-sm text-gray-500 leading-tight truncate -mt-2 block jd_card">
               {company} | {jobType} | {employmentType}
-            </p>
+            </span>
             
             {/* 직무 제목 */}
             <p className="font-bold text-base md:text-l text-black leading-tight line-clamp-1 jd_card">{title}</p>
