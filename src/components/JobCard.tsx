@@ -14,6 +14,84 @@ interface JobCardProps {
   sourceUrl: string;
 }
 
+// 텍스트 포맷팅 함수 
+function parseCurationText(text: string): string {
+  if (!text) return '';
+  
+  let result = text;
+  
+  // 색상 매핑
+  const colorMap: { [key: string]: string } = {
+    '빨강': '#FF0000',
+    '파랑': '#0000FF',
+    '초록': '#00FF00',
+    '노랑': '#FFFF00',
+    '보라': '#800080',
+    '주황': '#FFA500',
+    '회색': '#808080',
+    '검정': '#000000',
+    '흰색': '#FFFFFF',
+    '빨간색': '#FF0000',
+    '파란색': '#0000FF',
+    '초록색': '#00FF00',
+    '노란색': '#FFFF00',
+    '보라색': '#800080',
+    '주황색': '#FFA500',
+    '검정색': '#000000'
+  };
+  
+  // HEX 색상 검증 함수
+  const isValidHexColor = (color: string): boolean => {
+    return /^#[0-9A-F]{6}$/i.test(color);
+  };
+  
+  // 색상명 검증 함수
+  const isValidColorName = (color: string): boolean => {
+    return colorMap.hasOwnProperty(color);
+  };
+  
+  // 1. 색상 처리 (커스텀 기호) - 화이트리스트 방식
+  result = result.replace(/\[색상:(.*?)\](.*?)\[\/색상\]/g, (match, color, text) => {
+    // 색상 검증
+    if (isValidColorName(color) || isValidHexColor(color)) {
+      const hexColor = colorMap[color] || color;
+      return `<span style="color: ${hexColor}">${text}</span>`;
+    }
+    return text; // 유효하지 않은 색상이면 원본 텍스트 반환
+  });
+  
+  result = result.replace(/\[배경:(.*?)\](.*?)\[\/배경\]/g, (match, color, text) => {
+    // 색상 검증
+    if (isValidColorName(color) || isValidHexColor(color)) {
+      const hexColor = colorMap[color] || color;
+      return `<span style="background-color: ${hexColor}">${text}</span>`;
+    }
+    return text; // 유효하지 않은 색상이면 원본 텍스트 반환
+  });
+  
+  // 2. 마크다운 스타일 처리 - 화이트리스트 방식
+  result = result.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  result = result.replace(/\*(.*?)\*/g, '<em>$1</em>');
+  result = result.replace(/~~(.*?)~~/g, '<del>$1</del>');
+  result = result.replace(/__(.*?)__/g, '<u>$1</u>');
+  
+  // 3. 줄바꿈 처리 (실제 줄바꿈만 처리)
+  result = result.replace(/\n/g, '<br>');
+  
+  // 4. 최종 보안 검증 - 허용된 태그만 남기기
+  const allowedTags = ['strong', 'em', 'del', 'u', 'span', 'br'];
+  const allowedAttributes = ['style'];
+  
+  // 위험한 태그나 속성이 있으면 제거
+  result = result.replace(/<script[^>]*>.*?<\/script>/gi, '');
+  result = result.replace(/<iframe[^>]*>.*?<\/iframe>/gi, '');
+  result = result.replace(/<object[^>]*>.*?<\/object>/gi, '');
+  result = result.replace(/<embed[^>]*>/gi, '');
+  result = result.replace(/on\w+\s*=/gi, ''); // 이벤트 핸들러 제거
+  
+  return result;
+}
+
 export default function JobCard({
   category,
   title,
@@ -44,6 +122,9 @@ export default function JobCard({
     
     return categoryColors[category] || '#808080';
   };
+
+  // 큐레이션 텍스트 파싱
+  const parsedCuration = parseCurationText(curation);
 
   return (
     <a 
@@ -99,7 +180,10 @@ export default function JobCard({
             </p>
             
             {/* 큐레이션 설명 */}
-            <p className="font-medium text-xs md:text-sm text-black leading-medium line-clamp-5 min-h-[80px] md:min-h-[100px]">{curation}</p>
+            <div 
+              className="font-medium text-xs md:text-sm text-black leading-medium line-clamp-5 min-h-[80px] md:min-h-[100px]"
+              dangerouslySetInnerHTML={{ __html: parsedCuration }}
+            />
           </div>
         </div>
       </div>
