@@ -99,7 +99,7 @@ export default function JobCard({
             </p>
             
             {/* 큐레이션 설명 */}
-            <p className="font-medium text-xs md:text-sm text-black leading-medium line-clamp-5">{curation}</p>
+            <p className="font-medium text-xs md:text-sm text-black leading-medium line-clamp-5 min-h-[80px] md:min-h-[100px]">{curation}</p>
           </div>
         </div>
       </div>
