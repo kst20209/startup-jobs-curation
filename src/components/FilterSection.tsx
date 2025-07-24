@@ -53,14 +53,14 @@ function FilterDropdown({ label, options = [], onClick, isOpen = false, onSelect
         onClick={onClick}
         className="bg-gray-50 border border-gray-200 rounded-md px-2 md:px-2.5 py-2 flex items-center gap-2.5 hover:bg-gray-100 transition-colors text-xs md:text-sm filter"
       >
-        <span className="text-gray-900 flex-1 truncate">{label}</span>
-        <span className={`font-semibold ${accentColor}`}>{displayText}</span>
+        <span className="text-gray-900 flex-1 truncate filter">{label}</span>
+        <span className={`font-semibold ${accentColor} filter`}>{displayText}</span>
         <svg 
           width="16" 
           height="16" 
           viewBox="0 0 22 22" 
           fill="none" 
-          className={`text-gray-500 transition-transform flex-shrink-0 md:w-[16px] md:h-[16px] ${isOpen ? 'rotate-180' : ''}`}
+          className={`text-gray-500 transition-transform flex-shrink-0 md:w-[16px] md:h-[16px] ${isOpen ? 'rotate-180' : ''} filter`}
         >
           <path d="M6 9L11 14L16 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>

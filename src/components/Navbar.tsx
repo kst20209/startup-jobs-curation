@@ -60,7 +60,7 @@ export default function Navbar() {
         <div className="md:hidden bg-white border-b border-gray-100 px-4 py-3">
           <div className="flex flex-col gap-3">
             <Link 
-              href="/jobs" 
+              href="/" 
               className="text-gray-700 hover:text-gray-900 font-medium py-2 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >

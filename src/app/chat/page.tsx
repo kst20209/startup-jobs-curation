@@ -252,7 +252,7 @@ export default function ChatPage() {
             marginBottom: '4px'
           }}>
             <div className="open_chat" style={{ display: 'flex' }}>
-              <a href="https://open.kakao.com/o/g9JmRSFh" target="_blank" rel="noopener noreferrer" style={{
+              <a href="https://open.kakao.com/o/g9JmRSFh" target="_blank" rel="noopener noreferrer" className="open_chat" style={{
                 display: 'flex',
                 color: 'inherit',
                 textDecoration: 'none',
@@ -270,13 +270,13 @@ export default function ChatPage() {
                 position: 'relative',
                 fill: 'inherit'
               }}>
-                <div style={{
+                <div className="open_chat" style={{
                   flex: '4 1 180px',
                   padding: '12px 14px 14px',
                   overflow: 'hidden',
                   textAlign: 'left'
                 }}>
-                  <div style={{
+                  <div className="open_chat" style={{
                     fontSize: '14px',
                     lineHeight: '20px',
                     color: 'rgb(50, 48, 44)',
@@ -288,14 +288,14 @@ export default function ChatPage() {
                   }}>
                     [렛츠커리어] 마케팅 채용공고 큐레이션
                   </div>
-                  <div style={{ display: 'flex', marginTop: '6px' }}>
-                    <Image src="https://iopen.kakaocdn.net/favicon.ico" style={{
+                  <div className="open_chat" style={{ display: 'flex', marginTop: '6px' }}>
+                    <Image src="https://iopen.kakaocdn.net/favicon.ico" className="open_chat" style={{
                       width: '16px',
                       height: '16px',
                       minWidth: '16px',
                       marginRight: '6px'
                     }} alt="" width={16} height={16} />
-                    <div style={{
+                    <div className="open_chat" style={{
                       fontSize: '12px',
                       lineHeight: '16px',
                       color: 'rgb(50, 48, 44)',
@@ -307,14 +307,14 @@ export default function ChatPage() {
                     </div>
                   </div>
                 </div>
-                <div style={{
+                <div className="open_chat" style={{
                   flex: '1 1 180px',
                   display: 'block',
                   position: 'relative'
                 }}>
-                  <div style={{ position: 'absolute', inset: 0 }}>
-                    <div style={{ width: '100%', height: '100%' }}>
-                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_003.png" style={{
+                  <div className="open_chat" style={{ position: 'absolute', inset: 0 }}>
+                    <div className="open_chat" style={{ width: '100%', height: '100%' }}>
+                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_003.png" className="open_chat" style={{
                         display: 'block',
                         objectFit: 'cover',
                         borderRadius: '2px',
@@ -366,7 +366,7 @@ export default function ChatPage() {
             marginBottom: '4px'
           }}>
             <div className="open_chat" style={{ display: 'flex' }}>
-              <a href="https://open.kakao.com/o/gZgMRSFh" target="_blank" rel="noopener noreferrer" style={{
+              <a href="https://open.kakao.com/o/gZgMRSFh" target="_blank" rel="noopener noreferrer" className="open_chat" style={{
                 display: 'flex',
                 color: 'inherit',
                 textDecoration: 'none',
@@ -384,13 +384,13 @@ export default function ChatPage() {
                 position: 'relative',
                 fill: 'inherit'
               }}>
-                <div style={{
+                <div className="open_chat" style={{
                   flex: '4 1 180px',
                   padding: '12px 14px 14px',
                   overflow: 'hidden',
                   textAlign: 'left'
                 }}>
-                  <div style={{
+                  <div className="open_chat" style={{
                     fontSize: '14px',
                     lineHeight: '20px',
                     color: 'rgb(50, 48, 44)',
@@ -402,14 +402,14 @@ export default function ChatPage() {
                   }}>
                     [렛츠커리어] 세일즈 채용공고 큐레이션
                   </div>
-                  <div style={{ display: 'flex', marginTop: '6px' }}>
-                    <Image src="https://iopen.kakaocdn.net/favicon.ico" style={{
+                  <div className="open_chat" style={{ display: 'flex', marginTop: '6px' }}>
+                    <Image src="https://iopen.kakaocdn.net/favicon.ico" className="open_chat" style={{
                       width: '16px',
                       height: '16px',
                       minWidth: '16px',
                       marginRight: '6px'
                     }} alt="" width={16} height={16} />
-                    <div style={{
+                    <div className="open_chat" style={{
                       fontSize: '12px',
                       lineHeight: '16px',
                       color: 'rgb(50, 48, 44)',
@@ -421,14 +421,14 @@ export default function ChatPage() {
                     </div>
                   </div>
                 </div>
-                <div style={{
+                <div className="open_chat" style={{
                   flex: '1 1 180px',
                   display: 'block',
                   position: 'relative'
                 }}>
-                  <div style={{ position: 'absolute', inset: 0 }}>
-                    <div style={{ width: '100%', height: '100%' }}>
-                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_001.png" style={{
+                  <div className="open_chat" style={{ position: 'absolute', inset: 0 }}>
+                    <div className="open_chat" style={{ width: '100%', height: '100%' }}>
+                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_001.png" className="open_chat" style={{
                         display: 'block',
                         objectFit: 'cover',
                         borderRadius: '2px',
@@ -480,7 +480,7 @@ export default function ChatPage() {
             marginBottom: '4px'
           }}>
             <div className="open_chat" style={{ display: 'flex' }}>
-              <a href="https://open.kakao.com/o/gPDpSSFh" target="_blank" rel="noopener noreferrer" style={{
+              <a href="https://open.kakao.com/o/gPDpSSFh" target="_blank" rel="noopener noreferrer" className="open_chat" style={{
                 display: 'flex',
                 color: 'inherit',
                 textDecoration: 'none',
@@ -498,13 +498,13 @@ export default function ChatPage() {
                 position: 'relative',
                 fill: 'inherit'
               }}>
-                <div style={{
+                <div className="open_chat" style={{
                   flex: '4 1 180px',
                   padding: '12px 14px 14px',
                   overflow: 'hidden',
                   textAlign: 'left'
                 }}>
-                  <div style={{
+                  <div className="open_chat" style={{
                     fontSize: '14px',
                     lineHeight: '20px',
                     color: 'rgb(50, 48, 44)',
@@ -516,14 +516,14 @@ export default function ChatPage() {
                   }}>
                     [렛츠커리어] 기획/운영 채용공고 큐레이션
                   </div>
-                  <div style={{ display: 'flex', marginTop: '6px' }}>
-                    <Image src="https://iopen.kakaocdn.net/favicon.ico" style={{
+                  <div className="open_chat" style={{ display: 'flex', marginTop: '6px' }}>
+                    <Image src="https://iopen.kakaocdn.net/favicon.ico" className="open_chat" style={{
                       width: '16px',
                       height: '16px',
                       minWidth: '16px',
                       marginRight: '6px'
                     }} alt="" width={16} height={16} />
-                    <div style={{
+                    <div className="open_chat" style={{
                       fontSize: '12px',
                       lineHeight: '16px',
                       color: 'rgb(50, 48, 44)',
@@ -535,14 +535,14 @@ export default function ChatPage() {
                     </div>
                   </div>
                 </div>
-                <div style={{
+                <div className="open_chat" style={{
                   flex: '1 1 180px',
                   display: 'block',
                   position: 'relative'
                 }}>
-                  <div style={{ position: 'absolute', inset: 0 }}>
-                    <div style={{ width: '100%', height: '100%' }}>
-                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_003.png" style={{
+                  <div className="open_chat" style={{ position: 'absolute', inset: 0 }}>
+                    <div className="open_chat" style={{ width: '100%', height: '100%' }}>
+                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_003.png" className="open_chat" style={{
                         display: 'block',
                         objectFit: 'cover',
                         borderRadius: '2px',
@@ -594,7 +594,7 @@ export default function ChatPage() {
             marginBottom: '4px'
           }}>
             <div className="open_chat" style={{ display: 'flex' }}>
-              <a href="https://open.kakao.com/o/ghzwTSFh" target="_blank" rel="noopener noreferrer" style={{
+              <a href="https://open.kakao.com/o/ghzwTSFh" target="_blank" rel="noopener noreferrer" className="open_chat" style={{
                 display: 'flex',
                 color: 'inherit',
                 textDecoration: 'none',
@@ -612,13 +612,13 @@ export default function ChatPage() {
                 position: 'relative',
                 fill: 'inherit'
               }}>
-                <div style={{
+                <div className="open_chat" style={{
                   flex: '4 1 180px',
                   padding: '12px 14px 14px',
                   overflow: 'hidden',
                   textAlign: 'left'
                 }}>
-                  <div style={{
+                  <div className="open_chat" style={{
                     fontSize: '14px',
                     lineHeight: '20px',
                     color: 'rgb(50, 48, 44)',
@@ -630,14 +630,14 @@ export default function ChatPage() {
                   }}>
                     [렛츠커리어] 인사/HR/경영관리 채용공고 큐레이션
                   </div>
-                  <div style={{ display: 'flex', marginTop: '6px' }}>
-                    <Image src="https://iopen.kakaocdn.net/favicon.ico" style={{
+                  <div className="open_chat" style={{ display: 'flex', marginTop: '6px' }}>
+                    <Image src="https://iopen.kakaocdn.net/favicon.ico" className="open_chat" style={{
                       width: '16px',
                       height: '16px',
                       minWidth: '16px',
                       marginRight: '6px'
                     }} alt="" width={16} height={16} />
-                    <div style={{
+                    <div className="open_chat" style={{
                       fontSize: '12px',
                       lineHeight: '16px',
                       color: 'rgb(50, 48, 44)',
@@ -649,14 +649,14 @@ export default function ChatPage() {
                     </div>
                   </div>
                 </div>
-                <div style={{
+                <div className="open_chat" style={{
                   flex: '1 1 180px',
                   display: 'block',
                   position: 'relative'
                 }}>
-                  <div style={{ position: 'absolute', inset: 0 }}>
-                    <div style={{ width: '100%', height: '100%' }}>
-                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_002.png" style={{
+                  <div className="open_chat" style={{ position: 'absolute', inset: 0 }}>
+                    <div className="open_chat" style={{ width: '100%', height: '100%' }}>
+                      <Image alt="" src="https://iopen.kakaocdn.net/img/og/v2/en_scrap_sv_002.png" className="open_chat" style={{
                         display: 'block',
                         objectFit: 'cover',
                         borderRadius: '2px',
