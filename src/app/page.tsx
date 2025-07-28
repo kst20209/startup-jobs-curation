@@ -42,6 +42,45 @@ const matchesEmployeeFilter = (employeeCount: string, filter: string): boolean =
   }
 };
 
+// 랜덤 배너 데이터를 가져오는 함수
+async function getRandomBannerJob() {
+  const { data: bannerJobs, error } = await supabase
+    .from('job_post_curation')
+    .select(`
+      id,
+      job_title,
+      job_category_main,
+      job_category_sub,
+      employment_type,
+      source_url,
+      job_curation,
+      is_active,
+      is_liberal,
+      companies (
+        company_name,
+        industry,
+        logo_url,
+        categories,
+        investment_series,
+        revenue,
+        employee_count
+      )
+    `)
+    .eq('is_active', true)
+    .eq('is_liberal', true);
+
+  if (error) {
+    console.error('Error fetching banner job:', error);
+    return null;
+  }
+
+  if (!bannerJobs || bannerJobs.length === 0) return null;
+
+  // 랜덤으로 하나 선택 (빌드 시점에 결정되므로 정적)
+  const randomIndex = Math.floor(Math.random() * bannerJobs.length);
+  return bannerJobs[randomIndex];
+}
+
 // 서버에서 필터링된 데이터를 가져오는 함수
 async function getFilteredJobs(searchParams: Promise<{ [key: string]: string | string[] | undefined }>) {
   // searchParams를 await으로 해결
@@ -130,12 +169,40 @@ export default async function Home({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }> 
 }) {
   const filteredJobs = await getFilteredJobs(searchParams);
+  const bannerJob = await getRandomBannerJob();
   const params = await searchParams;
+
+  // 배너 데이터 변환
+  const bannerData = bannerJob ? {
+    category: (bannerJob.companies as any)?.categories?.length > 0 
+      ? (bannerJob.companies as any).categories.join(', ') 
+      : '스타트업',
+    title: bannerJob.job_title,
+    company: (bannerJob.companies as any)?.company_name || '회사명',
+    jobType: bannerJob.job_category_main || '직무 카테고리',
+    jobTypeSub: bannerJob.job_category_sub || '직무 카테고리',
+    employmentType: bannerJob.employment_type || '고용형태',
+    curation: bannerJob.job_curation || '큐레이션 내용이 없습니다.',
+    logoUrl: (bannerJob.companies as any)?.logo_url || undefined,
+    sourceUrl: bannerJob.source_url || ''
+  } : null;
 
   return (
     <div>
       <MainHeadline />
-      <Banner />
+      {bannerData && (
+        <Banner
+          category={bannerData.category}
+          title={bannerData.title}
+          company={bannerData.company}
+          jobType={bannerData.jobType}
+          jobTypeSub={bannerData.jobTypeSub}
+          employmentType={bannerData.employmentType}
+          curation={bannerData.curation}
+          logoUrl={bannerData.logoUrl}
+          sourceUrl={bannerData.sourceUrl}
+        />
+      )}
       <JobsPage initialJobs={filteredJobs} currentFilters={params} />
     </div>
   );
