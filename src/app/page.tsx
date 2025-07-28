@@ -119,15 +119,8 @@ async function getFilteredJobs(searchParams: Promise<{ [key: string]: string | s
   if (!allJobs) return [];
 
   // URL 파라미터 기반 필터링
-  return allJobs.filter((job: { 
-    companies?: { 
-      investment_series?: string; 
-      industry?: string; 
-      revenue?: string; 
-      employee_count?: string; 
-    }[]; 
-    job_category_main?: string; 
-  }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return allJobs.filter((job: any) => {
     const company = job.companies?.[0];
     
     // 직무 필터
@@ -180,19 +173,18 @@ export default async function Home({
   const params = await searchParams;
 
   // 배너 데이터 변환
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const bannerData = bannerJob ? {
-    category: (() => {
-      const companies = bannerJob.companies as { categories?: string[] }[];
-      const categories = companies?.[0]?.categories;
-      return categories && categories.length > 0 ? categories.join(', ') : '스타트업';
-    })(),
+    category: (bannerJob.companies as any)?.categories?.length > 0 
+      ? (bannerJob.companies as any).categories.join(', ') 
+      : '스타트업',
     title: bannerJob.job_title,
-    company: (bannerJob.companies as { company_name?: string }[])?.[0]?.company_name || '회사명',
+    company: (bannerJob.companies as any)?.company_name || '회사명',
     jobType: bannerJob.job_category_main || '직무 카테고리',
     jobTypeSub: bannerJob.job_category_sub || '직무 카테고리',
     employmentType: bannerJob.employment_type || '고용형태',
     curation: bannerJob.job_curation || '큐레이션 내용이 없습니다.',
-    logoUrl: (bannerJob.companies as { logo_url?: string }[])?.[0]?.logo_url || undefined,
+    logoUrl: (bannerJob.companies as any)?.logo_url || undefined,
     sourceUrl: bannerJob.source_url || ''
   } : null;
 
