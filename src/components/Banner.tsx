@@ -122,76 +122,80 @@ export default function Banner({
   const parsedCuration = parseCurationText(curation);
 
   return (
-    <div className="w-full bg-[#0066e3] py-10 md:py-16 px-2 md:px-0 mb-6 md:mb-8">
-      {/* 상단 텍스트 */}
-      <div className="max-w-4xl mx-auto mb-2 md:mb-4">
-        <span className="text-white font-bold text-lg md:text-2xl pl-2">
-          취업 준비생을 위한 공고 추천
-        </span>
-      </div>
-      {/* 배너 카드 */}
-      <div className="max-w-4xl mx-auto bg-gray-50 rounded-2xl shadow-xl flex flex-col md:flex-row p-6 md:p-10">
-        {/* 왼쪽: 로고+회사정보 */}
-        <div className="flex flex-col items-center md:w-2/5 md:flex-none md:items-start  md:pr-8">
-          {/* 로고 컨테이너 - 고정 크기 */}
-          <div className="w-16 h-16 md:w-20 md:h-20 mb-4 flex-shrink-0">
-            <div className="w-full h-full border border-gray-200 rounded-lg bg-white p-1">
-              {logoUrl ? (
-                <Image 
-                  src={logoUrl} 
-                  alt={`${company} 로고`} 
-                  width={80}
-                  height={80}
-                  className="w-full h-full object-contain rounded"
-                />
-              ) : (
-                <div className="w-full h-full rounded flex items-center justify-center bg-blue-500">
-                  <span className="text-white font-bold text-xs md:text-sm">로고</span>
-                </div>
-              )}
+    <div className="w-full bg-white">
+      <div className="w-full bg-[#0066e3] py-10 md:py-16 px-2 md:px-0">
+        {/* 상단 텍스트 */}
+        <div className="max-w-4xl mx-auto mb-2 md:mb-4">
+          <span className="text-white font-bold text-lg md:text-2xl pl-2">
+            취업 준비생을 위한 공고 추천
+          </span>
+        </div>
+        {/* 배너 카드 */}
+        <div className="max-w-4xl mx-auto bg-gray-50 rounded-2xl shadow-xl flex flex-col md:flex-row p-6 md:p-10">
+          {/* 왼쪽: 로고+회사정보 */}
+          <div className="flex flex-col items-center md:w-2/5 md:flex-none md:items-start  md:pr-8">
+            {/* 로고 컨테이너 - 고정 크기 */}
+            <div className="w-16 h-16 md:w-20 md:h-20 mb-4 flex-shrink-0">
+              <div className="w-full h-full border border-gray-200 rounded-lg bg-white p-1">
+                {logoUrl ? (
+                  <Image 
+                    src={logoUrl} 
+                    alt={`${company} 로고`} 
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-contain rounded"
+                  />
+                ) : (
+                  <div className="w-full h-full rounded flex items-center justify-center bg-blue-500">
+                    <span className="text-white font-bold text-xs md:text-sm">로고</span>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            {/* 카테고리 태그 */}
+            <span 
+              className="text-black px-2 py-1 rounded font-bold text-xs mb-2"
+              style={{ backgroundColor: getCategoryColor(category) }}
+            >
+              {category}
+            </span>
+            
+            {/* 회사 정보 */}
+            <span className="text-gray-700 text-sm mb-1 text-center md:text-left inline-block">
+              {company} | {jobType} | {employmentType}
+            </span>
+            
+            {/* 제목 */}
+            <span className="font-bold text-base md:text-lg text-black mb-2 text-center md:text-left inline-block today_apply_button"  id="jobTitle">
+              {title}
+            </span>
+          </div>
+          
+          {/* 오른쪽: 큐레이션+버튼 */}
+          <div className="flex flex-col justify-between md:w-3/5 md:flex-none mt-6 md:mt-0 md:pl-8">
+            {/* 큐레이션 내용 */}
+            <div className="bg-gray-50 border border-gray-300 rounded-lg p-4 text-sm text-gray-800 mb-4 flex-1">
+              <span className="font-semibold text-black block mb-2">👉 오공고 큐레이션</span>
+              <div 
+                className="text-gray-800"
+                dangerouslySetInnerHTML={{ __html: parsedCuration }}
+              />
+            </div>
+            
+            {/* 지원 버튼 */}
+            <div className="flex justify-center md:justify-end today_apply_button">
+              <a href={urlWithUtm} target="_blank" rel="noopener noreferrer" className="today_apply_button">
+                <button className="bg-[#3b82f6] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#2563eb] transition today_apply_button">
+                  지원하기
+                </button>
+              </a>
             </div>
           </div>
-          
-          {/* 카테고리 태그 */}
-          <span 
-            className="text-black px-2 py-1 rounded font-bold text-xs mb-2"
-            style={{ backgroundColor: getCategoryColor(category) }}
-          >
-            {category}
-          </span>
-          
-          {/* 회사 정보 */}
-          <span className="text-gray-700 text-sm mb-1 text-center md:text-left inline-block">
-            {company} | {jobType} | {employmentType}
-          </span>
-          
-          {/* 제목 */}
-          <span className="font-bold text-base md:text-lg text-black mb-2 text-center md:text-left inline-block today_apply_button"  id="jobTitle">
-            {title}
-          </span>
-        </div>
-        
-        {/* 오른쪽: 큐레이션+버튼 */}
-        <div className="flex flex-col justify-between md:w-3/5 md:flex-none mt-6 md:mt-0 md:pl-8">
-          {/* 큐레이션 내용 */}
-          <div className="bg-gray-50 border border-gray-300 rounded-lg p-4 text-sm text-gray-800 mb-4 flex-1">
-            <span className="font-semibold text-black block mb-2">👉 오공고 큐레이션</span>
-            <div 
-              className="text-gray-800"
-              dangerouslySetInnerHTML={{ __html: parsedCuration }}
-            />
-          </div>
-          
-          {/* 지원 버튼 */}
-          <div className="flex justify-center md:justify-end today_apply_button">
-            <a href={urlWithUtm} target="_blank" rel="noopener noreferrer" className="today_apply_button">
-              <button className="bg-[#3b82f6] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#2563eb] transition today_apply_button">
-                지원하기
-              </button>
-            </a>
-          </div>
         </div>
       </div>
+      {/* 하단 간격 - 흰색 배경 */}
+      <div className="h-6 md:h-8 bg-white"></div>
     </div>
   );
 } 
