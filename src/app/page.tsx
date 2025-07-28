@@ -43,7 +43,7 @@ const matchesEmployeeFilter = (employeeCount: string, filter: string): boolean =
 };
 
 // 랜덤 배너 데이터를 가져오는 함수
-async function getRandomBannerJob() {
+async function getDailyBannerJob() {
   const { data: bannerJobs, error } = await supabase
     .from('job_post_curation')
     .select(`
@@ -76,9 +76,23 @@ async function getRandomBannerJob() {
 
   if (!bannerJobs || bannerJobs.length === 0) return null;
 
-  // 랜덤으로 하나 선택 (빌드 시점에 결정되므로 정적)
-  const randomIndex = Math.floor(Math.random() * bannerJobs.length);
-  return bannerJobs[randomIndex];
+  // 날짜 기반 결정적 랜덤 - 하루에 하나의 공고로 고정
+  const today = new Date();
+  const dateString = today.toISOString().split('T')[0]; // YYYY-MM-DD 형식
+  
+  // 간단한 해시 함수로 시드 기반 랜덤 생성
+  const hash = (str: string) => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash; // 32비트 정수로 변환
+    }
+    return Math.abs(hash);
+  };
+  
+  const dailyIndex = hash(dateString) % bannerJobs.length;
+  return bannerJobs[dailyIndex];
 }
 
 // 서버에서 필터링된 데이터를 가져오는 함수
@@ -170,7 +184,7 @@ export default async function Home({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }> 
 }) {
   const filteredJobs = await getFilteredJobs(searchParams);
-  const bannerJob = await getRandomBannerJob();
+  const bannerJob = await getDailyBannerJob();
   const params = await searchParams;
 
   // 배너 데이터 변환 - JobPostList와 동일한 방식 사용

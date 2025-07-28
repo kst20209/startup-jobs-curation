@@ -161,14 +161,14 @@ export default function Banner({
           </span>
           
           {/* 회사 정보 */}
-          <div className="text-gray-700 text-sm mb-1 text-center md:text-left">
+          <span className="text-gray-700 text-sm mb-1 text-center md:text-left inline-block">
             {company} | {jobType} | {employmentType}
-          </div>
+          </span>
           
           {/* 제목 */}
-          <div className="font-bold text-base md:text-lg text-black mb-2 text-center md:text-left">
+          <span className="font-bold text-base md:text-lg text-black mb-2 text-center md:text-left inline-block"  id="jobTitle">
             {title}
-          </div>
+          </span>
         </div>
         
         {/* 오른쪽: 큐레이션+버튼 */}
@@ -183,9 +183,9 @@ export default function Banner({
           </div>
           
           {/* 지원 버튼 */}
-          <div className="flex justify-center md:justify-end">
-            <a href={urlWithUtm} target="_blank" rel="noopener noreferrer">
-              <button className="bg-[#3b82f6] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#2563eb] transition">
+          <div className="flex justify-center md:justify-end today_apply_button">
+            <a href={urlWithUtm} target="_blank" rel="noopener noreferrer" className="today_apply_button">
+              <button className="bg-[#3b82f6] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#2563eb] transition today_apply_button">
                 지원하기
               </button>
             </a>
