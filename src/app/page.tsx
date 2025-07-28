@@ -163,6 +163,7 @@ async function getFilteredJobs(searchParams: Promise<{ [key: string]: string | s
 }
 
 // 서버 컴포넌트 - URL 파라미터 기반 필터링
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function Home({ 
   searchParams 
 }: { 
@@ -172,18 +173,21 @@ export default async function Home({
   const bannerJob = await getRandomBannerJob();
   const params = await searchParams;
 
-  // 배너 데이터 변환
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // 배너 데이터 변환 - JobPostList와 동일한 방식 사용
   const bannerData = bannerJob ? {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     category: (bannerJob.companies as any)?.categories?.length > 0 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ? (bannerJob.companies as any).categories.join(', ') 
       : '스타트업',
     title: bannerJob.job_title,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     company: (bannerJob.companies as any)?.company_name || '회사명',
     jobType: bannerJob.job_category_main || '직무 카테고리',
     jobTypeSub: bannerJob.job_category_sub || '직무 카테고리',
     employmentType: bannerJob.employment_type || '고용형태',
     curation: bannerJob.job_curation || '큐레이션 내용이 없습니다.',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     logoUrl: (bannerJob.companies as any)?.logo_url || undefined,
     sourceUrl: bannerJob.source_url || ''
   } : null;
