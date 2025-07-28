@@ -40,7 +40,7 @@ export default function JobsPage({ initialJobs, currentFilters }: JobsPageProps)
   }));
 
   return (
-    <div className="bg-white rounded-lg max-w-[1280px] mx-auto md:p-8">
+    <div className="bg-white max-w-[1280px] mx-auto md:p-8">
       {/* 필터 섹션 - 클라이언트 컴포넌트 */}
       <FilterSection currentFilters={currentFilters} />
 
