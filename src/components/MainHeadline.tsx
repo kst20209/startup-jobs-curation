@@ -9,7 +9,7 @@ export default function MainHeadline() {
         </div>
         {/* 오른쪽: 서브텍스트 */}
         <div className="w-full md:w-1/2 text-sm md:text-lg text-black text-center md:text-left">
-          '내가 잘할 수 있을까?', '지원해도 괜찮을까?'<br />
+          &apos;내가 잘할 수 있을까?&apos;, &apos;지원해도 괜찮을까?&apos;<br />
           처음이라 더 조심스러운 그 마음, 잘 알고 있습니다.<br />
           그래서 여러분이 지원해볼 만한 공고만 엄선했습니다.
         </div>
