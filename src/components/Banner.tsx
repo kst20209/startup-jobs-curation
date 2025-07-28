@@ -122,10 +122,10 @@ export default function Banner({
   const parsedCuration = parseCurationText(curation);
 
   return (
-    <div className="w-full bg-[#0066e3] py-10 md:py-16 px-2 md:px-0">
+    <div className="w-full bg-[#0066e3] py-10 md:py-16 px-2 md:px-0 mb-6 md:mb-8">
       {/* 상단 텍스트 */}
       <div className="max-w-4xl mx-auto mb-2 md:mb-4">
-        <span className="text-white font-bold text-xl md:text-2xl pl-2">
+        <span className="text-white font-bold text-lg md:text-2xl pl-2">
           취업 준비생을 위한 공고 추천
         </span>
       </div>
