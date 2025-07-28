@@ -166,7 +166,7 @@ export default function Banner({
           </span>
           
           {/* 제목 */}
-          <span className="font-bold text-base md:text-lg text-black mb-2 text-center md:text-left inline-block"  id="jobTitle">
+          <span className="font-bold text-base md:text-lg text-black mb-2 text-center md:text-left inline-block today_apply_button"  id="jobTitle">
             {title}
           </span>
         </div>
