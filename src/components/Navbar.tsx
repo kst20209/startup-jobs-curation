@@ -4,10 +4,12 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import FeedbackModal from './FeedbackModal';
 import Image from 'next/image'
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -15,7 +17,7 @@ export default function Navbar() {
         <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2">
           <div className="flex items-center gap-2 px-2">
             {/* 로고: 데스크톱에서는 ogongo-logo, 모바일에서는 ogongo-favicon */}
-            <span className="block">
+            <Link href="/" className="block hover:opacity-80 transition-opacity">
               {/* 데스크톱(640px 이상)에서만 보임 */}
               <span className="hidden sm:inline">
                 <Image
@@ -39,14 +41,37 @@ export default function Navbar() {
                   priority
                 />
               </span>
-            </span>
-            <nav className="ml-8 flex gap-6 text-gray-700 text-base font-medium sm:text-sm sm:ml-3 sm:gap-3">
-              {/* 네비게이션 메뉴는 여기에 추가 */}
+            </Link>
+            
+            {/* 데스크톱 네비게이션 메뉴 */}
+            <nav className="hidden sm:flex ml-8 gap-6 text-base font-medium mt-2">
+              <Link 
+                href="/" 
+                className={`transition-colors ${
+                  pathname === '/' ? 'text-black font-semibold' : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                채용공고
+              </Link>
+              <Link 
+                href="/chat" 
+                className={`transition-colors ${
+                  pathname === '/chat' ? 'text-black font-semibold' : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                오픈채팅방
+              </Link>
             </nav>
           </div>
 
-          {/* 우측: 피드백 요청 버튼 */}
-          <div className="flex items-center">
+          {/* 우측: 모바일에서는 오픈채팅 버튼 + 피드백 요청 버튼, 데스크톱에서는 피드백 버튼만 */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* 모바일에서만 보이는 오픈채팅 버튼 */}
+            <Link href="/chat" className="sm:hidden">
+              <button className="bg-[#3b82f6]/10 hover:bg-[#3b82f6]/20 text-[#3b82f6] font-semibold px-3 py-1.5 rounded-full border border-[#3b82f6]/30 transition-colors text-xs min-w-[60px]">
+                <span className="inline">💬 오픈채팅</span>
+              </button>
+            </Link>
             <button
               className="bg-[#5D5DF6]/10 hover:bg-[#5D5DF6]/20 text-[#5D5DF6] font-semibold px-3 py-1.5 sm:px-5 sm:py-2 rounded-full border border-[#5D5DF6]/30 transition-colors text-xs sm:text-sm min-w-[70px] sm:min-w-[110px]"
               onClick={() => setIsFeedbackOpen(true)}
