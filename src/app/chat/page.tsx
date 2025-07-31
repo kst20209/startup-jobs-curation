@@ -29,7 +29,7 @@ export default function ChatPage() {
             <div style={{
               display: 'flex',
               width: '100%',
-              color: 'inherit',
+              color: '#000000',
               fill: 'inherit'
             }}>
               <h3 style={{
@@ -37,7 +37,8 @@ export default function ChatPage() {
                 width: '100%',
                 whiteSpace: 'break-spaces',
                 wordBreak: 'break-word',
-                caretColor: 'rgb(50, 48, 44)',
+                caretColor: '#000000',
+                color: '#000000',
                 padding: '3px 2px',
                 fontFamily: 'ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
                 fontWeight: 600,
@@ -57,14 +58,15 @@ export default function ChatPage() {
             marginTop: '1px',
             marginBottom: '1px'
           }}>
-            <div style={{ color: 'inherit', fill: 'inherit' }}>
+            <div style={{ color: '#000000', fill: 'inherit' }}>
               <div style={{ display: 'flex' }}>
                 <div style={{
                   maxWidth: '100%',
                   width: '100%',
                   whiteSpace: 'break-spaces',
                   wordBreak: 'break-word',
-                  caretColor: 'rgb(50, 48, 44)',
+                  caretColor: '#000000',
+                  color: '#000000',
                   padding: '3px 2px'
                 }}>
                   렛츠커리어는 문과 계열 취준생에게 집중하여, 채용공고를 큐레이션 합니다.
@@ -79,17 +81,18 @@ export default function ChatPage() {
             marginTop: '1px',
             marginBottom: '1px'
           }}>
-            <div style={{ color: 'inherit', fill: 'inherit' }}>
+            <div style={{ color: '#000000', fill: 'inherit' }}>
               <div style={{ display: 'flex' }}>
                 <div style={{
                   maxWidth: '100%',
                   width: '100%',
                   whiteSpace: 'break-spaces',
                   wordBreak: 'break-word',
-                  caretColor: 'rgb(50, 48, 44)',
+                  caretColor: '#000000',
+                  color: '#000000',
                   padding: '3px 2px'
                 }}>
-                  <span style={{ fontWeight: 600 }}>단순히 나열형으로 채용공고를 소개하는 것에서 그치지 않아요.</span>
+                  <span style={{ fontWeight: 600, color: '#000000' }}>단순히 나열형으로 채용공고를 소개하는 것에서 그치지 않아요.</span>
                 </div>
               </div>
             </div>
@@ -101,14 +104,15 @@ export default function ChatPage() {
             marginTop: '1px',
             marginBottom: '1px'
           }}>
-            <div style={{ color: 'inherit', fill: 'inherit' }}>
+            <div style={{ color: '#000000', fill: 'inherit' }}>
               <div style={{ display: 'flex' }}>
                 <div style={{
                   maxWidth: '100%',
                   width: '100%',
                   whiteSpace: 'break-spaces',
                   wordBreak: 'break-word',
-                  caretColor: 'rgb(50, 48, 44)',
+                  caretColor: '#000000',
+                  color: '#000000',
                   padding: '3px 2px'
                 }}>
                   1️⃣ 채용 공고를 분석해드리거나,
@@ -123,14 +127,15 @@ export default function ChatPage() {
             marginTop: '1px',
             marginBottom: '1px'
           }}>
-            <div style={{ color: 'inherit', fill: 'inherit' }}>
+            <div style={{ color: '#000000', fill: 'inherit' }}>
               <div style={{ display: 'flex' }}>
                 <div style={{
                   maxWidth: '100%',
                   width: '100%',
                   whiteSpace: 'break-spaces',
                   wordBreak: 'break-word',
-                  caretColor: 'rgb(50, 48, 44)',
+                  caretColor: '#000000',
+                  color: '#000000',
                   padding: '3px 2px'
                 }}>
                   2️⃣ 잘 모르는 좋은 회사를 발굴하여 소개해드리거나,
@@ -145,14 +150,15 @@ export default function ChatPage() {
             marginTop: '1px',
             marginBottom: '1px'
           }}>
-            <div style={{ color: 'inherit', fill: 'inherit' }}>
+            <div style={{ color: '#000000', fill: 'inherit' }}>
               <div style={{ display: 'flex' }}>
                 <div style={{
                   maxWidth: '100%',
                   width: '100%',
                   whiteSpace: 'break-spaces',
                   wordBreak: 'break-word',
-                  caretColor: 'rgb(50, 48, 44)',
+                  caretColor: '#000000',
+                  color: '#000000',
                   padding: '3px 2px'
                 }}>
                   3️⃣ 다른 플랫폼에서 잘 보지 못했던 공고들을 모아서 알려드릴거에요.
@@ -167,17 +173,18 @@ export default function ChatPage() {
             marginTop: '1.5rem',
             marginBottom: '1px'
           }}>
-            <div style={{ color: 'inherit', fill: 'inherit' }}>
+            <div style={{ color: '#000000', fill: 'inherit' }}>
               <div style={{ display: 'flex' }}>
                 <div style={{
                   maxWidth: '100%',
                   width: '100%',
                   whiteSpace: 'break-spaces',
                   wordBreak: 'break-word',
-                  caretColor: 'rgb(50, 48, 44)',
+                  caretColor: '#000000',
+                  color: '#000000',
                   padding: '3px 2px'
                 }}>
-                  <span style={{ fontWeight: 600 }}>렛츠커리어가 만드는 채용공고 플랫폼을 기대해주세요 🙂</span>
+                  <span style={{ fontWeight: 600, color: '#000000' }}>렛츠커리어가 만드는 채용공고 플랫폼을 기대해주세요 🙂</span>
                 </div>
               </div>
             </div>
@@ -193,7 +200,7 @@ export default function ChatPage() {
             <div style={{
               display: 'flex',
               width: '100%',
-              color: 'inherit',
+              color: '#000000',
               fill: 'inherit'
             }}>
               <h3 style={{
@@ -201,7 +208,8 @@ export default function ChatPage() {
                 width: '100%',
                 whiteSpace: 'break-spaces',
                 wordBreak: 'break-word',
-                caretColor: 'rgb(50, 48, 44)',
+                caretColor: '#000000',
+                color: '#000000',
                 padding: '3px 2px',
                 fontFamily: 'ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
                 fontWeight: 600,
@@ -224,7 +232,7 @@ export default function ChatPage() {
             <div style={{
               display: 'flex',
               width: '100%',
-              color: 'inherit',
+              color: '#000000',
               fill: 'inherit'
             }}>
               <h4 style={{
@@ -232,7 +240,8 @@ export default function ChatPage() {
                 width: '100%',
                 whiteSpace: 'break-spaces',
                 wordBreak: 'break-word',
-                caretColor: 'rgb(50, 48, 44)',
+                caretColor: '#000000',
+                color: '#000000',
                 padding: '3px 2px',
                 fontFamily: 'ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
                 fontWeight: 600,
@@ -279,14 +288,14 @@ export default function ChatPage() {
                   <div className="open_chat" style={{
                     fontSize: '14px',
                     lineHeight: '20px',
-                    color: 'rgb(50, 48, 44)',
+                    color: '#000000',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     minHeight: '24px',
                     marginBottom: '2px'
                   }}>
-                    <span id="openTitle">[렛츠커리어] 마케팅 채용공고 큐레이션</span>
+                    <span id="openTitle" style={{ color: '#000000' }}>[렛츠커리어] 마케팅 채용공고 큐레이션</span>
                   </div>
                   <div className="open_chat" style={{ display: 'flex', marginTop: '6px' }}>
                     <Image src="/kakao-favicon.png" className="open_chat" style={{
@@ -298,7 +307,7 @@ export default function ChatPage() {
                     <div className="open_chat" style={{
                       fontSize: '12px',
                       lineHeight: '16px',
-                      color: 'rgb(50, 48, 44)',
+                      color: '#000000',
                       whiteSpace: 'nowrap',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis'
