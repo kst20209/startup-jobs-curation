@@ -42,8 +42,60 @@ const matchesEmployeeFilter = (employeeCount: string, filter: string): boolean =
   }
 };
 
-// 랜덤 배너 데이터를 가져오는 함수
+// 오늘의 공고 데이터를 가져오는 함수
 async function getDailyBannerJob() {
+  // 먼저 settings_curation 테이블에서 today_job_post_id 확인
+  const { data: settingsData, error: settingsError } = await supabase
+    .from('settings_curation')
+    .select('today_job_post_id')
+    .order('id', { ascending: false })
+    .limit(1)
+    .single();
+
+  if (settingsError && settingsError.code !== 'PGRST116') { // PGRST116는 결과가 없는 경우
+    console.error('Error fetching settings:', settingsError);
+  }
+
+  // today_job_post_id가 설정되어 있고 null이 아닌 경우
+  if (settingsData?.today_job_post_id) {
+    const { data: manualJob, error: manualJobError } = await supabase
+      .from('job_post_curation')
+      .select(`
+        id,
+        job_title,
+        job_category_main,
+        job_category_sub,
+        employment_type,
+        source_url,
+        job_curation,
+        is_active,
+        is_liberal,
+        is_visible,
+        companies (
+          company_name,
+          industry,
+          logo_url,
+          categories,
+          investment_series,
+          revenue,
+          employee_count
+        )
+      `)
+      .eq('id', settingsData.today_job_post_id)
+      .eq('is_active', true)
+      .eq('is_liberal', true)
+      .eq('is_visible', true)
+      .single();
+
+    if (!manualJobError && manualJob) {
+      console.log(`📌 수동 설정된 오늘의 공고 사용: ID ${settingsData.today_job_post_id}`);
+      return manualJob;
+    } else {
+      console.warn(`⚠️ 설정된 공고 ID ${settingsData.today_job_post_id}를 찾을 수 없습니다. 랜덤 공고로 대체합니다.`);
+    }
+  }
+
+  // 수동 설정이 없거나 유효하지 않은 경우 기존 랜덤 방식 사용
   const { data: bannerJobs, error } = await supabase
     .from('job_post_curation')
     .select(`
@@ -94,6 +146,7 @@ async function getDailyBannerJob() {
   };
   
   const dailyIndex = hash(dateString) % bannerJobs.length;
+  console.log(`🎲 랜덤 오늘의 공고 사용: ${bannerJobs[dailyIndex].job_title}`);
   return bannerJobs[dailyIndex];
 }
 
