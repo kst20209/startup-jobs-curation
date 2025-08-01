@@ -355,7 +355,7 @@ export default function ChatPage() {
                 width: '100%',
                 whiteSpace: 'break-spaces',
                 wordBreak: 'break-word',
-                caretColor: 'rgb(50, 48, 44)',
+                caretColor: '#000000',
                 padding: '3px 2px',
                 fontFamily: 'ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
                 fontWeight: 600,
@@ -402,7 +402,7 @@ export default function ChatPage() {
                   <div className="open_chat" style={{
                     fontSize: '14px',
                     lineHeight: '20px',
-                    color: 'rgb(50, 48, 44)',
+                    color: '#000000',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -421,7 +421,7 @@ export default function ChatPage() {
                     <div className="open_chat" style={{
                       fontSize: '12px',
                       lineHeight: '16px',
-                      color: 'rgb(50, 48, 44)',
+                      color: '#000000',
                       whiteSpace: 'nowrap',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis'
@@ -469,7 +469,7 @@ export default function ChatPage() {
                 width: '100%',
                 whiteSpace: 'break-spaces',
                 wordBreak: 'break-word',
-                caretColor: 'rgb(50, 48, 44)',
+                caretColor: '#000000',
                 padding: '3px 2px',
                 fontFamily: 'ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
                 fontWeight: 600,
@@ -516,7 +516,7 @@ export default function ChatPage() {
                   <div className="open_chat" style={{
                     fontSize: '14px',
                     lineHeight: '20px',
-                    color: 'rgb(50, 48, 44)',
+                    color: '#000000',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -535,7 +535,7 @@ export default function ChatPage() {
                     <div className="open_chat" style={{
                       fontSize: '12px',
                       lineHeight: '16px',
-                      color: 'rgb(50, 48, 44)',
+                      color: '#000000',
                       whiteSpace: 'nowrap',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis'
@@ -583,7 +583,7 @@ export default function ChatPage() {
                 width: '100%',
                 whiteSpace: 'break-spaces',
                 wordBreak: 'break-word',
-                caretColor: 'rgb(50, 48, 44)',
+                caretColor: '#000000',
                 padding: '3px 2px',
                 fontFamily: 'ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
                 fontWeight: 600,
@@ -630,7 +630,7 @@ export default function ChatPage() {
                   <div className="open_chat" style={{
                     fontSize: '14px',
                     lineHeight: '20px',
-                    color: 'rgb(50, 48, 44)',
+                    color: '#000000',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -649,7 +649,7 @@ export default function ChatPage() {
                     <div className="open_chat" style={{
                       fontSize: '12px',
                       lineHeight: '16px',
-                      color: 'rgb(50, 48, 44)',
+                      color: '#000000',
                       whiteSpace: 'nowrap',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis'
@@ -697,7 +697,7 @@ export default function ChatPage() {
                 width: '100%',
                 whiteSpace: 'break-spaces',
                 wordBreak: 'break-word',
-                caretColor: 'rgb(50, 48, 44)',
+                caretColor: '#000000',
                 padding: '3px 2px',
                 fontFamily: 'ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
                 fontWeight: 600,
@@ -723,7 +723,7 @@ export default function ChatPage() {
                   width: '100%',
                   whiteSpace: 'break-spaces',
                   wordBreak: 'break-word',
-                  caretColor: 'rgb(50, 48, 44)',
+                  caretColor: '#000000',
                   padding: '3px 2px'
                 }}>
                   기쁜 소식을 저희에게도 알려주세요! <br />
@@ -746,7 +746,7 @@ export default function ChatPage() {
                   width: '100%',
                   whiteSpace: 'nowrap',
                   wordBreak: 'break-word',
-                  caretColor: 'rgb(50, 48, 44)',
+                  caretColor: '#000000',
                   padding: '3px 2px',
                   display: 'flex',
                   alignItems: 'center'
