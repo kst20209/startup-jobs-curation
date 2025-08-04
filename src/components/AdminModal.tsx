@@ -66,7 +66,7 @@ export default function AdminModal({ isOpen, onClose }: AdminModalProps) {
   const [jobSubmitting, setJobSubmitting] = useState(false)
   const [jobStatus, setJobStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
-  // 기업 등록 핸들러
+  // 기업 등록 핸들러 - DB 업데이트 비활성화
   const handleCompanySubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (companyForm.password !== ADMIN_SECRET) {
@@ -75,40 +75,27 @@ export default function AdminModal({ isOpen, onClose }: AdminModalProps) {
     }
     setCompanySubmitting(true)
     setCompanyStatus('idle')
-    try {
-      const { data, error } = await supabase.from('companies').insert([
-        {
-          company_name: companyForm.company_name,
-          company_url: companyForm.company_url,
-          revenue: companyForm.revenue,
-          employee_count: companyForm.employee_count,
-          investment_series: companyForm.investment_series,
-          industry: companyForm.industry,
-          categories: companyForm.categories
-            ? companyForm.categories.split(',').map((c) => c.trim())
-            : null,
-          logo_url: companyForm.logo_url
-        }
-      ]).select('id')
-      if (error || !data || !data[0]?.id) {
-        setCompanyStatus('error')
-      } else {
-        setCompanyStatus('success')
-        // 등록 후 공고 폼의 company_id도 자동 선택
-        setJobForm(f => ({...f, company_id: String(data[0].id)}))
-        // 기업 목록 새로고침
-        supabase.from('companies').select('id, company_name').then(({ data }) => {
-          setCompanyList(data || [])
-        })
-      }
-    } catch {
-      setCompanyStatus('error')
-    } finally {
+    
+    // DB 업데이트 대신 성공 메시지만 표시
+    setTimeout(() => {
+      setCompanyStatus('success')
       setCompanySubmitting(false)
-    }
+      // 폼 초기화
+      setCompanyForm({
+        company_name: '',
+        company_url: '',
+        revenue: '',
+        employee_count: '',
+        investment_series: '',
+        industry: '',
+        categories: '',
+        logo_url: '',
+        password: ''
+      })
+    }, 1000)
   }
 
-  // 공고 등록 핸들러
+  // 공고 등록 핸들러 - DB 업데이트 비활성화
   const handleJobSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (jobForm.password !== ADMIN_SECRET) {
@@ -121,37 +108,32 @@ export default function AdminModal({ isOpen, onClose }: AdminModalProps) {
     }
     setJobSubmitting(true)
     setJobStatus('idle')
-    try {
-      const { error } = await supabase.from('job_post_curation').insert([
-        {
-          job_title: jobForm.job_title,
-          job_url: jobForm.job_url,
-          company_id: Number(jobForm.company_id),
-          job_category_main: jobForm.job_category_main,
-          job_category_sub: jobForm.job_category_sub,
-          employment_type: jobForm.employment_type,
-          region: jobForm.region,
-          deadline_date: jobForm.deadline_date || null,
-          job_description: jobForm.job_description,
-          requirements: jobForm.requirements,
-          preferred_qualifications: jobForm.preferred_qualifications,
-          contract_duration: jobForm.contract_duration,
-          is_conversion_intern: jobForm.is_conversion_intern,
-          deadline_text: jobForm.deadline_text,
-          is_liberal: jobForm.is_liberal,
-          source_url: jobForm.source_url
-        }
-      ])
-      if (error) {
-        setJobStatus('error')
-      } else {
-        setJobStatus('success')
-      }
-    } catch {
-      setJobStatus('error')
-    } finally {
+    
+    // DB 업데이트 대신 성공 메시지만 표시
+    setTimeout(() => {
+      setJobStatus('success')
       setJobSubmitting(false)
-    }
+      // 폼 초기화
+      setJobForm({
+        company_id: '',
+        job_title: '',
+        job_url: '',
+        job_category_main: '',
+        job_category_sub: '',
+        employment_type: '',
+        region: '',
+        deadline_date: '',
+        job_description: '',
+        requirements: '',
+        preferred_qualifications: '',
+        contract_duration: '',
+        is_conversion_intern: false,
+        deadline_text: '',
+        is_liberal: false,
+        source_url: '',
+        password: ''
+      })
+    }, 1000)
   }
 
   if (!isOpen) return null
@@ -169,7 +151,7 @@ export default function AdminModal({ isOpen, onClose }: AdminModalProps) {
       >
         {/* 헤더 */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">어드민 입력</h2>
+          <h2 className="text-xl font-semibold text-gray-900">어드민 입력 (비활성화됨)</h2>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 transition-colors"
@@ -179,6 +161,19 @@ export default function AdminModal({ isOpen, onClose }: AdminModalProps) {
             </svg>
           </button>
         </div>
+        
+        {/* 비활성화 알림 */}
+        <div className="p-4 bg-yellow-50 border border-yellow-200">
+          <div className="flex items-center">
+            <svg className="w-5 h-5 text-yellow-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+            <span className="text-sm text-yellow-700">
+              현재 기업 및 채용공고 등록 기능이 비활성화되어 있습니다. 입력하신 정보는 저장되지 않습니다.
+            </span>
+          </div>
+        </div>
+        
         {/* 본문: 2단 분할 */}
         <div className="flex-1 flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-gray-200 min-h-[500px]">
           {/* 기업 입력 */}
@@ -226,10 +221,10 @@ export default function AdminModal({ isOpen, onClose }: AdminModalProps) {
                 <input type="password" required value={companyForm.password} onChange={e => setCompanyForm(f => ({...f, password: e.target.value}))} className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
               </div>
               <button type="submit" className="w-full bg-[#5D5DF6] text-white py-2 rounded-lg font-medium transition-all duration-200 hover:bg-[#4c4cf5] disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center" disabled={companySubmitting}>
-                {companySubmitting ? '등록 중...' : '기업 등록'}
+                {companySubmitting ? '등록 중...' : '기업 등록 (비활성화됨)'}
               </button>
-              {companyStatus === 'success' && <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded text-green-700 text-sm">기업이 성공적으로 등록되었습니다!</div>}
-              {companyStatus === 'error' && <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded text-red-700 text-sm">등록 실패(비밀번호 오류 또는 필수값 누락/서버오류)</div>}
+              {companyStatus === 'success' && <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded text-green-700 text-sm">기업 등록이 시뮬레이션되었습니다! (실제로는 저장되지 않음)</div>}
+              {companyStatus === 'error' && <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded text-red-700 text-sm">등록 실패(비밀번호 오류 또는 필수값 누락)</div>}
             </form>
           </div>
           {/* 공고 입력 */}
@@ -326,9 +321,9 @@ export default function AdminModal({ isOpen, onClose }: AdminModalProps) {
                 <input type="password" required value={jobForm.password} onChange={e => setJobForm(f => ({...f, password: e.target.value}))} className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
               </div>
               <button type="submit" className="w-full bg-[#5D5DF6] text-white py-2 rounded-lg font-medium transition-all duration-200 hover:bg-[#4c4cf5] disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center" disabled={jobSubmitting}>
-                {jobSubmitting ? '등록 중...' : '공고 등록'}
+                {jobSubmitting ? '등록 중...' : '공고 등록 (비활성화됨)'}
               </button>
-              {jobStatus === 'success' && <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded text-green-700 text-sm">공고가 성공적으로 등록되었습니다!</div>}
+              {jobStatus === 'success' && <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded text-green-700 text-sm">공고 등록이 시뮬레이션되었습니다! (실제로는 저장되지 않음)</div>}
               {jobStatus === 'error' && <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded text-red-700 text-sm">등록 실패(비밀번호 오류, 기업 미등록, 또는 서버오류)</div>}
             </form>
           </div>
