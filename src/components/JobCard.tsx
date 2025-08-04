@@ -202,7 +202,7 @@ export default function JobCard({
               href={urlWithUtm} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center px-5 py-2 bg-blue-500 text-white text-[10px] md:text-sm font-medium rounded-md hover:bg-blue-600 transition-colors duration-200 jd_card card_apply"
+              className="inline-flex items-center px-5 py-2 bg-blue-500 text-white text-base md:text-base font-medium rounded-lg hover:bg-blue-600 transition-colors duration-200 jd_card card_apply"
               onClick={(e) => e.stopPropagation()} // 카드 토글 방지
             >
               지원하기
