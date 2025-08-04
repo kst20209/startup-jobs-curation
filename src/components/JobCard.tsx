@@ -122,67 +122,94 @@ export default function JobCard({
   // 큐레이션 텍스트 파싱
   const parsedCuration = parseCurationText(curation);
 
+  // 카드 확장 토글 함수
+  const toggleCard = (event: React.MouseEvent) => {
+    const card = event.currentTarget as HTMLElement;
+    card.classList.toggle('expanded');
+  };
+
   return (
-    <a 
-      href={urlWithUtm} 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="block hover:opacity-90 transition-opacity"
+    <div 
+      className="bg-white rounded-lg p-4 md:p-5 w-full border border-gray-200 flex gap-3 md:gap-5 cursor-pointer hover:bg-gray-50 transition-all duration-300 ease-in-out jd_card group"
+      onClick={toggleCard}
     >
-      <div className="bg-white rounded-lg p-4 md:p-5 w-full border border-gray-200 flex gap-3 md:gap-5 cursor-pointer hover:bg-gray-50 transition-colors jd_card">
-        {/* 로고 영역 - 세로 중앙 정렬 */}
-        <div className="flex items-center jd_card">
-          <div className={`rounded flex-shrink-0 w-[60px] h-[60px] md:w-[80px] md:h-[80px] flex items-center justify-center ${logoUrl ? 'bg-white border border-gray-300' : 'bg-blue-500'} jd_card`}>
-            {logoUrl ? (
-              <Image 
-                src={logoUrl} 
-                alt={`${company} 로고`} 
-                width={80}
-                height={80}
-                className="w-full h-full object-contain rounded jd_card"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  target.nextElementSibling?.classList.remove('hidden');
-                }}
-              />
-            ) : null}
-            <span className={`text-white font-bold text-sm md:text-lg ${logoUrl ? 'hidden' : ''} jd_card`}>로고</span>
-          </div>
-        </div>
-        
-        {/* 텍스트 정보 영역 */}
-        <div className="flex flex-col justify-center flex-1 min-w-0 py-2 jd_card">
-          <div className="space-y-2 jd_card">
-            {/* 카테고리 */}
-            <p 
-              className="font-bold text-sm md:text-base text-black leading-tight truncate px-2 py-1 rounded inline-block jd_card"
-              style={{ backgroundColor: getCategoryColor(category) }}
-            >
-              {category}
-            </p>
-            
-            {/* 회사명 | 직무 카테고리 | 고용 형태 */}
-            <span id="jobTitle" className="font-medium text-xs md:text-sm text-gray-500 leading-tight truncate -mt-2 block jd_card">
-              {company} | {jobType} | {employmentType}
-            </span>
-            
-            {/* 직무 제목 */}
-            <p className="font-bold text-base md:text-l text-black leading-tight line-clamp-1 jd_card">{title}</p>
-            
-            {/* 큐레이션 정보 */}
-            <p className="font-bold text-xs md:text-sm text-black leading-tight jd_card">
-              👉🏻 오공고 큐레이션
-            </p>
-            
-            {/* 큐레이션 설명 */}
-            <div 
-              className="font-medium text-xs md:text-sm text-black leading-medium line-clamp-5 min-h-[80px] md:min-h-[100px] jd_card"
-              dangerouslySetInnerHTML={{ __html: parsedCuration }}
+      {/* 로고 영역 - 세로 중앙 정렬 */}
+      <div className="flex items-center jd_card">
+        <div className={`rounded flex-shrink-0 w-[60px] h-[60px] md:w-[80px] md:h-[80px] flex items-center justify-center ${logoUrl ? 'bg-white border border-gray-300' : 'bg-blue-500'} jd_card`}>
+          {logoUrl ? (
+            <Image 
+              src={logoUrl} 
+              alt={`${company} 로고`} 
+              width={80}
+              height={80}
+              className="w-full h-full object-contain rounded jd_card"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                target.nextElementSibling?.classList.remove('hidden');
+              }}
             />
-          </div>
+          ) : null}
+          <span className={`text-white font-bold text-sm md:text-lg ${logoUrl ? 'hidden' : ''} jd_card`}>로고</span>
         </div>
       </div>
-    </a>
+      
+      {/* 텍스트 정보 영역 */}
+      <div className="flex flex-col justify-center flex-1 min-w-0 py-2 jd_card relative">
+        <div className="space-y-2 jd_card">
+          {/* 카테고리 */}
+          <p 
+            className="font-bold text-sm md:text-base text-black leading-tight truncate px-2 py-1 rounded inline-block jd_card"
+            style={{ backgroundColor: getCategoryColor(category) }}
+          >
+            {category}
+          </p>
+          
+          {/* 회사명 | 직무 카테고리 | 고용 형태 */}
+          <span id="jobTitle" className="font-medium text-xs md:text-sm text-gray-500 leading-tight truncate -mt-2 block jd_card">
+            {company} | {jobType} | {employmentType}
+          </span>
+          
+          {/* 직무 제목 */}
+          <p className="font-bold text-base md:text-l text-black leading-tight line-clamp-1 jd_card">{title}</p>
+          
+          {/* 큐레이션 정보 */}
+          <p className="font-bold text-xs md:text-sm text-black leading-tight jd_card">
+            👉🏻 오공고 큐레이션
+          </p>
+          
+          {/* 큐레이션 설명 - 확장 가능한 영역 */}
+          <div 
+            className="font-medium text-xs md:text-sm text-black leading-medium line-clamp-5 min-h-[80px] md:min-h-[100px] transition-all duration-300 ease-in-out jd_card group-[.expanded]:line-clamp-none group-[.expanded]:min-h-auto"
+            dangerouslySetInnerHTML={{ __html: parsedCuration }}
+          />
+          
+          {/* 확장 표시 화살표 */}
+          <div className="flex justify-center mt-2 opacity-60 group-[.expanded]:opacity-0 group-[.expanded]:h-0 group-[.expanded]:overflow-hidden transition-all duration-300 jd_card">
+            <svg 
+              className="w-4 h-4 text-gray-400 group-[.expanded]:rotate-180 transition-transform duration-300" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+          
+          {/* 지원하기 버튼 - 화살표 아래에 고정 위치 */}
+          <span id="card_apply_click" className="hidden block group-[.expanded]:block mt-0 flex justify-end w-full text-right jd_card card_apply">
+            <a 
+              href={urlWithUtm} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-5 py-2 bg-blue-500 text-white text-[10px] md:text-sm font-medium rounded-md hover:bg-blue-600 transition-colors duration-200 jd_card card_apply"
+              onClick={(e) => e.stopPropagation()} // 카드 토글 방지
+            >
+              지원하기
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
   );
 } 
