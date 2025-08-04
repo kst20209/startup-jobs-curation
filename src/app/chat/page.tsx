@@ -3,9 +3,9 @@ import Image from 'next/image';
 
 export default function ChatPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white text-black">
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="notion-page-content" style={{
+        <div className="notion-page-content text-black" style={{
           flexShrink: 0,
           flexGrow: 1,
           maxWidth: '100%',
@@ -16,7 +16,8 @@ export default function ChatPage() {
           lineHeight: 1.5,
           width: '100%',
           zIndex: 4,
-          padding: '8px 0px 0px'
+          padding: '8px 0px 0px',
+          color: '#000000'
         }}>
           
           {/* 메인 제목 */}
@@ -263,7 +264,7 @@ export default function ChatPage() {
             <div className="open_chat" style={{ display: 'flex' }}>
               <a href="https://open.kakao.com/o/g9JmRSFh" target="_blank" rel="noopener noreferrer" className="open_chat" style={{
                 display: 'flex',
-                color: 'inherit',
+                color: '#000000',
                 textDecoration: 'none',
                 userSelect: 'none',
                 transition: 'background 20ms ease-in',
@@ -347,7 +348,7 @@ export default function ChatPage() {
             <div style={{
               display: 'flex',
               width: '100%',
-              color: 'inherit',
+              color: '#000000',
               fill: 'inherit'
             }}>
               <h4 style={{
@@ -356,6 +357,7 @@ export default function ChatPage() {
                 whiteSpace: 'break-spaces',
                 wordBreak: 'break-word',
                 caretColor: '#000000',
+                color: '#000000',
                 padding: '3px 2px',
                 fontFamily: 'ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
                 fontWeight: 600,
@@ -377,7 +379,7 @@ export default function ChatPage() {
             <div className="open_chat" style={{ display: 'flex' }}>
               <a href="https://open.kakao.com/o/gZgMRSFh" target="_blank" rel="noopener noreferrer" className="open_chat" style={{
                 display: 'flex',
-                color: 'inherit',
+                color: '#000000',
                 textDecoration: 'none',
                 userSelect: 'none',
                 transition: 'background 20ms ease-in',
@@ -409,7 +411,7 @@ export default function ChatPage() {
                     minHeight: '24px',
                     marginBottom: '2px'
                   }}>
-                    <span id="openTitle">[렛츠커리어] 세일즈 채용공고 큐레이션</span>
+                    <span id="openTitle" style={{ color: '#000000' }}>[렛츠커리어] 세일즈 채용공고 큐레이션</span>
                   </div>
                   <div className="open_chat" style={{ display: 'flex', marginTop: '6px' }}>
                     <Image src="/kakao-favicon.png" className="open_chat" style={{
@@ -461,7 +463,7 @@ export default function ChatPage() {
             <div style={{
               display: 'flex',
               width: '100%',
-              color: 'inherit',
+              color: '#000000',
               fill: 'inherit'
             }}>
               <h4 style={{
@@ -470,6 +472,7 @@ export default function ChatPage() {
                 whiteSpace: 'break-spaces',
                 wordBreak: 'break-word',
                 caretColor: '#000000',
+                color: '#000000',
                 padding: '3px 2px',
                 fontFamily: 'ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
                 fontWeight: 600,
@@ -491,7 +494,7 @@ export default function ChatPage() {
             <div className="open_chat" style={{ display: 'flex' }}>
               <a href="https://open.kakao.com/o/gPDpSSFh" target="_blank" rel="noopener noreferrer" className="open_chat" style={{
                 display: 'flex',
-                color: 'inherit',
+                color: '#000000',
                 textDecoration: 'none',
                 userSelect: 'none',
                 transition: 'background 20ms ease-in',
@@ -523,7 +526,7 @@ export default function ChatPage() {
                     minHeight: '24px',
                     marginBottom: '2px'
                   }}>
-                    <span id="openTitle">[렛츠커리어] 기획/운영 채용공고 큐레이션</span>
+                    <span id="openTitle" style={{ color: '#000000' }}>[렛츠커리어] 기획/운영 채용공고 큐레이션</span>
                   </div>
                   <div className="open_chat" style={{ display: 'flex', marginTop: '6px' }}>
                     <Image src="/kakao-favicon.png" className="open_chat" style={{
@@ -575,7 +578,7 @@ export default function ChatPage() {
             <div style={{
               display: 'flex',
               width: '100%',
-              color: 'inherit',
+              color: '#000000',
               fill: 'inherit'
             }}>
               <h4 style={{
@@ -584,6 +587,7 @@ export default function ChatPage() {
                 whiteSpace: 'break-spaces',
                 wordBreak: 'break-word',
                 caretColor: '#000000',
+                color: '#000000',
                 padding: '3px 2px',
                 fontFamily: 'ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
                 fontWeight: 600,
@@ -605,7 +609,7 @@ export default function ChatPage() {
             <div className="open_chat" style={{ display: 'flex' }}>
               <a href="https://open.kakao.com/o/ghzwTSFh" target="_blank" rel="noopener noreferrer" className="open_chat" style={{
                 display: 'flex',
-                color: 'inherit',
+                color: '#000000',
                 textDecoration: 'none',
                 userSelect: 'none',
                 transition: 'background 20ms ease-in',
@@ -637,7 +641,7 @@ export default function ChatPage() {
                     minHeight: '24px',
                     marginBottom: '2px'
                   }}>
-                    <span id="openTitle">[렛츠커리어] 인사/HR/경영관리 채용공고 큐레이션</span>
+                    <span id="openTitle" style={{ color: '#000000' }}>[렛츠커리어] 인사/HR/경영관리 채용공고 큐레이션</span>
                   </div>
                   <div className="open_chat" style={{ display: 'flex', marginTop: '6px' }}>
                     <Image src="/kakao-favicon.png" className="open_chat" style={{
@@ -689,7 +693,7 @@ export default function ChatPage() {
             <div style={{
               display: 'flex',
               width: '100%',
-              color: 'inherit',
+              color: '#000000',
               fill: 'inherit'
             }}>
               <h4 style={{
@@ -698,6 +702,7 @@ export default function ChatPage() {
                 whiteSpace: 'break-spaces',
                 wordBreak: 'break-word',
                 caretColor: '#000000',
+                color: '#000000',
                 padding: '3px 2px',
                 fontFamily: 'ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"',
                 fontWeight: 600,
@@ -716,7 +721,7 @@ export default function ChatPage() {
             marginTop: '1px',
             marginBottom: '1px'
           }}>
-            <div style={{ color: 'inherit', fill: 'inherit' }}>
+            <div style={{ color: '#000000', fill: 'inherit' }}>
               <div style={{ display: 'flex' }}>
                 <div style={{
                   maxWidth: '100%',
@@ -724,6 +729,7 @@ export default function ChatPage() {
                   whiteSpace: 'break-spaces',
                   wordBreak: 'break-word',
                   caretColor: '#000000',
+                  color: '#000000',
                   padding: '3px 2px'
                 }}>
                   기쁜 소식을 저희에게도 알려주세요! <br />
@@ -739,7 +745,7 @@ export default function ChatPage() {
             marginTop: '1px',
             marginBottom: '1px'
           }}>
-            <div style={{ color: 'inherit', fill: 'inherit' }}>
+            <div style={{ color: '#000000', fill: 'inherit' }}>
               <div style={{ display: 'flex' }}>
                 <div style={{
                   maxWidth: '100%',
@@ -747,12 +753,13 @@ export default function ChatPage() {
                   whiteSpace: 'nowrap',
                   wordBreak: 'break-word',
                   caretColor: '#000000',
+                  color: '#000000',
                   padding: '3px 2px',
                   display: 'flex',
                   alignItems: 'center'
                 }}>
                   → <a href="https://open.kakao.com/o/sjg7MSFh" target="_blank" rel="noopener noreferrer" style={{
-                    color: 'inherit',
+                    color: '#000000',
                     textDecoration: 'inherit',
                     cursor: 'pointer',
                     display: 'flex',
@@ -769,7 +776,8 @@ export default function ChatPage() {
                     <span style={{
                       borderBottom: '0.05em solid solid rgba(55,53,47,.25)',
                       fontWeight: 500,
-                      flexShrink: 0
+                      flexShrink: 0,
+                      color: '#000000'
                     }}>렛츠커리어 매니저 레오</span>
                   </a>
                 </div>
