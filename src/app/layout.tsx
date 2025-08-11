@@ -52,6 +52,9 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" />
         <link rel="icon" href="/favicon.ico" />
         
+        {/* Pretendard Font */}
+        <link rel="stylesheet" as="style" crossOrigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+        
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-7PEJC0TG9K"
