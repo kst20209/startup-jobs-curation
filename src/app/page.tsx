@@ -1,6 +1,7 @@
 import MainHeadline from '@/components/MainHeadline';
 import Banner from '@/components/Banner';
 import JobsPage from '@/components/JobsPage';
+import KakaotalkChatBanner from '@/components/KakaotalkChatBanner';
 import { supabase } from '@/lib/supabase';
 
 // 정적 생성 설정 - 1시간마다 재생성
@@ -265,6 +266,7 @@ export default async function Home({
 
   return (
     <div>
+      <KakaotalkChatBanner />
       <MainHeadline />
       {bannerData && (
         <Banner
