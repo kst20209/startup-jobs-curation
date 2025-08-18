@@ -72,6 +72,7 @@ async function getDailyBannerJob() {
         is_active,
         is_liberal,
         is_visible,
+        created_at,
         companies (
           company_name,
           industry,
@@ -110,6 +111,7 @@ async function getDailyBannerJob() {
       is_active,
       is_liberal,
       is_visible,
+      created_at,
       companies (
         company_name,
         industry,
@@ -122,7 +124,8 @@ async function getDailyBannerJob() {
     `)
     .eq('is_active', true)
     .eq('is_liberal', true)
-    .eq('is_visible', true);
+    .eq('is_visible', true)
+    .order('created_at', { ascending: false });
 
   if (error) {
     console.error('Error fetching banner job:', error);
@@ -169,6 +172,7 @@ async function getFilteredJobs(searchParams: Promise<{ [key: string]: string | s
       is_active,
       is_liberal,
       is_visible,
+      created_at,
       companies (
         company_name,
         industry,
@@ -181,7 +185,8 @@ async function getFilteredJobs(searchParams: Promise<{ [key: string]: string | s
     `)
     .eq('is_active', true)
     .eq('is_liberal', true)
-    .eq('is_visible', true);
+    .eq('is_visible', true)
+    .order('created_at', { ascending: false });
 
   if (error) {
     console.error('Error fetching jobs:', error);
