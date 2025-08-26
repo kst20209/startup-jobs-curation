@@ -15,12 +15,14 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
   const [satisfactionFeedback, setSatisfactionFeedback] = useState('')
   const [improvementFeedback, setImprovementFeedback] = useState('')
   const [email, setEmail] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error' | 'admin'>('idle')
   const [showAdminModal, setShowAdminModal] = useState(false)
 
   const maxLength = 1000
   const emailMaxLength = 100
+  const phoneMaxLength = 20
 
   const handleSubmit = async () => {
     if ((!satisfactionFeedback.trim() && !improvementFeedback.trim()) || isSubmitting) return
@@ -34,6 +36,7 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
         setSatisfactionFeedback('')
         setImprovementFeedback('')
         setEmail('')
+        setPhoneNumber('')
       }, 1200)
       return
     }
@@ -51,6 +54,7 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
             satisfaction_feedback: satisfactionFeedback.trim() || null,
             improvement_feedback: improvementFeedback.trim() || null,
             email: email.trim() || null,
+            phone_number: phoneNumber.trim() || null,
             user_agent: userAgent,
             // 기존 feedback_content는 null로 설정 (새로운 구조 사용)
             feedback_content: null,
@@ -65,6 +69,7 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
       setSatisfactionFeedback('')
       setImprovementFeedback('')
       setEmail('')
+      setPhoneNumber('')
       
       // 성공 메시지 표시 후 모달 닫기
       setTimeout(() => {
@@ -85,6 +90,7 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
       setSatisfactionFeedback('')
       setImprovementFeedback('')
       setEmail('')
+      setPhoneNumber('')
       setSubmitStatus('idle')
       onClose()
     }
@@ -186,6 +192,22 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="example@email.com"
                 maxLength={emailMaxLength}
+                disabled={isSubmitting}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:bg-gray-50 disabled:cursor-not-allowed"
+              />
+            </div>
+
+            {/* 질문 4: 전화번호 */}
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                4. 전화번호를 남겨주시면, 더 빠른 소통이 가능합니다! (선택)
+              </label>
+              <input
+                type="tel"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                placeholder="010-1234-5678"
+                maxLength={phoneMaxLength}
                 disabled={isSubmitting}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all disabled:bg-gray-50 disabled:cursor-not-allowed"
               />
